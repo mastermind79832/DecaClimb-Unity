@@ -5,17 +5,15 @@ using UnityEngine.SceneManagement;
 
 namespace DecaClimb
 {
-    public class LoadingScene : MonoBehaviour
+    public class LogoDisplay : MonoBehaviour
     {
         // Start is called before the first frame update
         void Start()
         {
-            StartCoroutine(LogoRunning());
-
+            StartCoroutine(RunLogo());
         }
 
-
-        IEnumerator LogoRunning()
+        IEnumerator RunLogo()
         {
             yield return new WaitForSeconds(2f);
             SceneManager.LoadScene(1);

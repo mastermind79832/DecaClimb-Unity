@@ -20,7 +20,6 @@ namespace DecaClimb
         public InputField levelCheat;
 
         public Camera menuCamera;
-        public BackgroundColorHandler colorMat;
 
         private void Start()
         {
@@ -34,29 +33,29 @@ namespace DecaClimb
 
             coinText.text = CoinsManagerScript.GetCoin().ToString();
 
-            menuCamera.backgroundColor = colorMat.GetColorRandom();
+            menuCamera.backgroundColor = BackgroundColorHandler.Instance.GetColorRandom();
 
         }
 
 
-        private void Update()
-        {
-            QuitGame();
+        //private void Update()
+        //{
+        //    QuitGame(); // in persistant setting
 
-            // if(instructionPanel.activeSelf && Input.GetMouseButtonDown(0))
-            // {
-            //     instructionPanel.SetActive(false);
-            // }
+        //    // if(instructionPanel.activeSelf && Input.GetMouseButtonDown(0))
+        //    // {
+        //    //     instructionPanel.SetActive(false);
+        //    // }
 
-        }
+        //}
 
-        private static void QuitGame()
-        {
-            if (Input.GetKey(KeyCode.Escape))
-            {
-                Application.Quit();
-            }
-        }
+        //private static void QuitGame()
+        //{
+        //    if (Input.GetKey(KeyCode.Escape))
+        //    {
+        //        Application.Quit();
+        //    }
+        //}
 
         public void GameStart()
         {

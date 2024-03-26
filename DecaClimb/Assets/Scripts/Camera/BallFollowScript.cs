@@ -11,12 +11,10 @@ namespace DecaClimb
 
         private float playerLoc;
 
-        public BackgroundColorHandler colorMat;
-
         // Start is called before the first frame update
         void Start()
         {
-            transform.GetComponent<Camera>().backgroundColor = colorMat.GetColorRandom();
+            transform.GetComponent<Camera>().backgroundColor = BackgroundColorHandler.Instance.GetColorRandom() ;
             playerLoc = player.position.y;
 
         }
@@ -36,8 +34,6 @@ namespace DecaClimb
                 transform.position = new Vector3(transform.position.x, transform.position.y + NewCameraLoc, transform.position.z);
                 playerLoc = updatePlayerLoc;
             }
-
-
         }
     }
 }
