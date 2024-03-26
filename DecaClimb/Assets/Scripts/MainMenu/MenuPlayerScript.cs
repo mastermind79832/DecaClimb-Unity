@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuPlayerScript : MonoBehaviour
+namespace DecaClimb
 {
-
-    [SerializeField] private Rigidbody m_Rigidbody;
-    [SerializeField] private float m_JumpVelocity;
-
-    private void OnCollisionEnter(Collision other)
+    public class MenuPlayerScript : MonoBehaviour
     {
 
-        if(other.gameObject.tag == "Ground")
+        [SerializeField] private Rigidbody m_Rigidbody;
+        [SerializeField] private float m_JumpVelocity;
+
+        private void OnCollisionEnter(Collision other)
         {
-            m_Rigidbody.velocity = Vector3.up * m_JumpVelocity;
+
+            if (other.gameObject.tag == "Ground")
+            {
+                m_Rigidbody.velocity = Vector3.up * m_JumpVelocity;
+            }
         }
     }
 }

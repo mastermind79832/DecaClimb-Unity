@@ -3,110 +3,119 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-public class MainMenuScript : MonoBehaviour
+
+namespace DecaClimb
 {
-    public GameObject statPanel;
-    public Text highScoreText;
-    public Text checkPointText;
-    public Text coinText;
-
-    public GameObject instructionPanel;
-    public GameObject cheatPanel;
-    
-    public InputField coinsCheat;
-    public InputField levelCheat; 
-
-    public Camera menuCamera;
-    public GameObject colorMat;
-
-    private void Start()
+    public class MainMenuScript : MonoBehaviour
     {
-       // Application.targetFrameRate = 60;
-        statPanel.SetActive(false);
-        cheatPanel.SetActive(false);
-        instructionPanel.SetActive(false);
-        highScoreText.text = ScoreScript.GetHighscore().ToString();
-       
-        checkPointText.text = levelsHandle.GetCheckpoint().ToString();
+        public GameObject statPanel;
+        public Text highScoreText;
+        public Text checkPointText;
+        public Text coinText;
 
-        coinText.text = CoinsManagerScript.GetCoin().ToString();
+        public GameObject instructionPanel;
+        public GameObject cheatPanel;
 
-        menuCamera.backgroundColor = colorMat.GetComponent<ColorMatScript>().GetColorRandom();
+        public InputField coinsCheat;
+        public InputField levelCheat;
 
-    }
-    
+        public Camera menuCamera;
+        public BackgroundColorHandler colorMat;
 
-    private void Update()
-    {
-        if( Input.GetKey(KeyCode.Escape))
+        private void Start()
         {
-            Application.Quit();
-        }
-
-        // if(instructionPanel.activeSelf && Input.GetMouseButtonDown(0))
-        // {
-        //     instructionPanel.SetActive(false);
-        // }
-
-    }
-
-    public void GameStart()
-    {
-        levelsHandle.ResetLevel();
-        levelsHandle.isLevelUp = false;
-        levelsHandle.isRetryUsed = false;
-        SceneManager.LoadScene(2);    
-    }
-
-    public void Instuction()
-    {
-        if(instructionPanel.activeSelf)
-            instructionPanel.SetActive(false);
-        else
-            instructionPanel.SetActive(true);
-        cheatPanel.SetActive(false);
-    }
-
-
-    public void Stats()
-    {
-        if(statPanel.activeSelf)
+            // Application.targetFrameRate = 60;
             statPanel.SetActive(false);
-        else
-            statPanel.SetActive(true);
-    }
-
-    public void Cheats()
-    {
-        if(cheatPanel.activeSelf)
             cheatPanel.SetActive(false);
-        else
-            cheatPanel.SetActive(true);
-    }
+            instructionPanel.SetActive(false);
+            highScoreText.text = ScoreScript.GetHighscore().ToString();
 
-    public void SetCheat()
-    {
-        // int coin = int.Parse(coinsCheat.text);
-        // int level =  int.Parse(levelCheat.text);
-     
-        if(coinsCheat.text != "")
-        {
-            int coin = System.Convert.ToInt32(coinsCheat.text);
-            PlayerPrefs.SetInt("Coins", coin);
-            coinText.text = CoinsManagerScript.GetCoin().ToString();
-        }
-
-
-        if(levelCheat.text != "")
-        {
-            int level =  System.Convert.ToInt32(levelCheat.text);
-            PlayerPrefs.SetInt("CheckPoint", level);
             checkPointText.text = levelsHandle.GetCheckpoint().ToString();
-        }
-    }
 
-    public void UpgradePage()
-    {
-        SceneManager.LoadScene(3);
+            coinText.text = CoinsManagerScript.GetCoin().ToString();
+
+            menuCamera.backgroundColor = colorMat.GetColorRandom();
+
+        }
+
+
+        private void Update()
+        {
+            QuitGame();
+
+            // if(instructionPanel.activeSelf && Input.GetMouseButtonDown(0))
+            // {
+            //     instructionPanel.SetActive(false);
+            // }
+
+        }
+
+        private static void QuitGame()
+        {
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+        }
+
+        public void GameStart()
+        {
+            levelsHandle.ResetLevel();
+            levelsHandle.isLevelUp = false;
+            levelsHandle.isRetryUsed = false;
+            SceneManager.LoadScene(2);
+        }
+
+        public void Instuction()
+        {
+            if (instructionPanel.activeSelf)
+                instructionPanel.SetActive(false);
+            else
+                instructionPanel.SetActive(true);
+            cheatPanel.SetActive(false);
+        }
+
+
+        public void Stats()
+        {
+            if (statPanel.activeSelf)
+                statPanel.SetActive(false);
+            else
+                statPanel.SetActive(true);
+        }
+
+        public void Cheats()
+        {
+            if (cheatPanel.activeSelf)
+                cheatPanel.SetActive(false);
+            else
+                cheatPanel.SetActive(true);
+        }
+
+        public void SetCheat()
+        {
+            // int coin = int.Parse(coinsCheat.text);
+            // int level =  int.Parse(levelCheat.text);
+
+            if (coinsCheat.text != "")
+            {
+                int coin = System.Convert.ToInt32(coinsCheat.text);
+                PlayerPrefs.SetInt("Coins", coin);
+                coinText.text = CoinsManagerScript.GetCoin().ToString();
+            }
+
+
+            if (levelCheat.text != "")
+            {
+                int level = System.Convert.ToInt32(levelCheat.text);
+                PlayerPrefs.SetInt("CheckPoint", level);
+                checkPointText.text = levelsHandle.GetCheckpoint().ToString();
+            }
+        }
+
+        public void UpgradePage()
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 }

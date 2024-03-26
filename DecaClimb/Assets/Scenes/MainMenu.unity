@@ -771,7 +771,7 @@ MonoBehaviour:
   m_Sprite: {fileID: 6338120789092850363, guid: 95d228a999734f643a41f32a5147f232,
     type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2571,12 +2571,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1266300645}
   m_CullTransparentMesh: 1
---- !u!1 &1312158207 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6336981456708240075, guid: bddf5613bfdbc0846b542e365ee5db86,
+--- !u!114 &1312158208 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6336981456708240074, guid: bddf5613bfdbc0846b542e365ee5db86,
     type: 3}
   m_PrefabInstance: {fileID: 1736129672}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd2af6180b8a894fb080340a3480f7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1325368079
 GameObject:
   m_ObjectHideFlags: 0
@@ -2989,7 +2995,7 @@ MonoBehaviour:
   coinsCheat: {fileID: 803975458}
   levelCheat: {fileID: 457528251}
   menuCamera: {fileID: 1258073650}
-  colorMat: {fileID: 1312158207}
+  colorMat: {fileID: 1312158208}
 --- !u!1 &1619295840
 GameObject:
   m_ObjectHideFlags: 0
@@ -3126,7 +3132,7 @@ MonoBehaviour:
   m_Sprite: {fileID: 3803313470691511377, guid: 95d228a999734f643a41f32a5147f232,
     type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -4221,7 +4227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cec91eccde6664dbcbc370df6e6974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 7378768352649942938}
+  m_Rigidbody: {fileID: 7378768352649942938}
+  m_JumpVelocity: 7
 --- !u!33 &7378768352649942951
 MeshFilter:
   m_ObjectHideFlags: 0

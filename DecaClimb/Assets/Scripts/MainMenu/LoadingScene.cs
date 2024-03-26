@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoadingScene : MonoBehaviour
+namespace DecaClimb
 {
-    // Start is called before the first frame update
-    void Start()
+    public class LoadingScene : MonoBehaviour
     {
-        StartCoroutine(LogoRunning());
-        
+        // Start is called before the first frame update
+        void Start()
+        {
+            StartCoroutine(LogoRunning());
+
+        }
+
+
+        IEnumerator LogoRunning()
+        {
+            yield return new WaitForSeconds(2f);
+            SceneManager.LoadScene(1);
+        }
+
     }
-
-
-    IEnumerator LogoRunning()
-    {
-        yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(1);
-    }
-
 }

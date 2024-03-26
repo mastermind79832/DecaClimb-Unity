@@ -2,39 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class CoinsManagerScript
+
+namespace DecaClimb
 {
-  
-    private static int coin;
-
-
-
-    public static int GetCoin()
-    {
-        coin = PlayerPrefs.GetInt("Coins");
-        return coin;
-    }
-
-    public static int GetCurrentCoin()
-    {
-        return coin;
-    }
-
-    public static void LevelUpCoin(int amount)
-    {
-        coin += amount;
-    }
-
-
-    public static void IncreaseCoin( int amount)
+    public static class CoinsManagerScript
     {
 
-        coin += amount;
+        private static int coin;
 
-    }
+        public static int GetCoin()
+        {
+            coin = PlayerPrefs.GetInt("Coins");
+            return coin;
+        }
 
-    public static void CoinUpdate()
-    {
-        PlayerPrefs.SetInt("Coins", coin);
+        public static int GetCurrentCoin()
+        {
+            return coin;
+        }
+
+        public static void LevelUpCoin(int amount)
+        {
+            coin += amount;
+        }
+
+        public static void IncreaseCoin(int amount)
+        {
+            coin += amount;
+        }
+
+        public static void CoinUpdate()
+        {
+            PlayerPrefs.SetInt("Coins", coin);
+        }
     }
 }

@@ -1,109 +1,104 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreDisplay : MonoBehaviour
+namespace DecaClimb
 {
-
-    public Text hisghScoreText;
-    public Text scoreText;
-
-
-    public Text levelText;
-    public GameObject levelUpText;
-
-
-    public Text ScoreIncreaseText;
-
-    public Text coinText;
-
-    public Button retry;
-
-    
-
-    int currentScore;
-
-    private void Start()
+    public class ScoreDisplay : MonoBehaviour
     {
-        levelUpText.SetActive(false);
-        currentScore = ScoreScript.GetScore();
-        scoreText.text = currentScore.ToString();
-        int level = levelsHandle.GetCurrentLevel();
-        levelText.text = level.ToString();
-        
-        LevelUp(level);
-        RetryEnable();
 
-    }
+        public Text hisghScoreText;
+        public Text scoreText;
 
-    private void RetryEnable()
-    {
-        if(levelsHandle.isRetryUsed)
+        public Text levelText;
+        public GameObject levelUpText;
+
+        public Text ScoreIncreaseText;
+
+        public Text coinText;
+
+        public Button retry;
+
+        int currentScore;
+
+        private void Start()
         {
-            retry.interactable = false;
-            GameObject videoImage = retry.transform.GetChild(0).gameObject;
-            //videoImage.GetComponentInChildren<Image>().color = new Color(0f,0f,0f,20f);
-            videoImage.SetActive(false);
+            levelUpText.SetActive(false);
+            currentScore = ScoreScript.GetScore();
+            scoreText.text = currentScore.ToString();
+            int level = levelsHandle.GetCurrentLevel();
+            levelText.text = level.ToString();
+
+            LevelUp(level);
+            RetryEnable();
+
         }
-    }
 
-
-    private void LevelUp(int level)
-    {
-       if(level % 5 == 0)
+        private void RetryEnable()
         {
-            levelUpText.GetComponent<Text>().text = "CHECKPOINT";
+            if (levelsHandle.isRetryUsed)
+            {
+                retry.interactable = false;
+                GameObject videoImage = retry.transform.GetChild(0).gameObject;
+                //videoImage.GetComponentInChildren<Image>().color = new Color(0f,0f,0f,20f);
+                videoImage.SetActive(false);
+            }
         }
-        else
+
+        private void LevelUp(int level)
         {
-            levelUpText.GetComponent<Text>().text = "LEVELUP";
+            if (level % 5 == 0)
+            {
+                levelUpText.GetComponent<Text>().text = "CHECKPOINT";
+            }
+            else
+            {
+                levelUpText.GetComponent<Text>().text = "LEVELUP";
+            }
+
+            if (levelsHandle.isLevelUp)
+            {
+                StartCoroutine(ShowLevelUp());
+
+            }
         }
-         
-        if(levelsHandle.isLevelUp)
+
+        IEnumerator ShowLevelUp()
         {
-            StartCoroutine(ShowLevelUp());
-            
-        } 
-    }
-
-
-
-
-    IEnumerator ShowLevelUp()
-    {
-        levelUpText.SetActive(true);
-        yield return new WaitForSeconds(1.5f);
-        Destroy(levelUpText);
-    }
-
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if(ScoreScript.GetScore() > currentScore)
-        {
-            int diff = ScoreScript.GetScore() - currentScore;
-            StartCoroutine(ScoreIncrease(diff));
-            scoreText.text = ScoreScript.GetScore().ToString();
-            currentScore += diff;
+            levelUpText.SetActive(true);
+            yield return new WaitForSeconds(1.5f);
+            Destroy(levelUpText);
         }
-        hisghScoreText.text = "Highscore :" + ScoreScript.GetHighscore().ToString();
-
-        coinText.text = CoinsManagerScript.GetCurrentCoin().ToString();
 
 
-    }
+        // Update is called once per frame
+        void FixedUpdate()
+        {
+            if (ScoreScript.GetScore() > currentScore)
+            {
+                int diff = ScoreScript.GetScore() - currentScore;
+                StartCoroutine(ScoreIncrease(diff));
+                scoreText.text = ScoreScript.GetScore().ToString();
+                currentScore += diff;
+            }
+            hisghScoreText.text = "Highscore :" + ScoreScript.GetHighscore().ToString();
 
-    IEnumerator ScoreIncrease(int diff)
-    {
-        Text tempText = Instantiate(ScoreIncreaseText,scoreText.transform) as Text;
+            coinText.text = CoinsManagerScript.GetCurrentCoin().ToString();
 
-        tempText.text = "+" + diff.ToString();
-    
-        yield return new WaitForSeconds(2f);
+        }
 
-        Destroy(tempText);
+        IEnumerator ScoreIncrease(int diff)
+        {
+            Text tempText = Instantiate(ScoreIncreaseText, scoreText.transform) as Text;
 
+            tempText.text = "+" + diff.ToString();
+
+            yield return new WaitForSeconds(2f);
+
+            Destroy(tempText);
+
+        }
     }
 }
