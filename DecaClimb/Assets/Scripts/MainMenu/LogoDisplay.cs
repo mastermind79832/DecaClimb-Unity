@@ -7,8 +7,12 @@ namespace DecaClimb
 {
     public class LogoDisplay : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+		// Start is called before the first frame update
+		private void Awake()
+		{
+            Application.targetFrameRate = 60;
+		}
+		void Start()
         {
             StartCoroutine(RunLogo());
         }

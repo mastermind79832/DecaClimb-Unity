@@ -1,3 +1,5 @@
+using DecaClimb.Ads;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +23,18 @@ namespace DecaClimb
 
         public Camera menuCamera;
 
-        private void Start()
+		private void Awake()
+		{
+            StartCoroutine(DisplayBannerWithDelay());
+		}
+
+		private IEnumerator DisplayBannerWithDelay()
+		{
+            yield return new WaitForSeconds(1f);
+            AdsManager.Instance.bannerAds.ShowAd();
+		}
+
+		private void Start()
         {
             // Application.targetFrameRate = 60;
             statPanel.SetActive(false);
@@ -38,24 +51,23 @@ namespace DecaClimb
         }
 
 
-        //private void Update()
-        //{
-        //    QuitGame(); // in persistant setting
+        private void Update()
+        {
+            QuitGame();
+            // if(instructionPanel.activeSelf && Input.GetMouseButtonDown(0))
+            // {
+            //     instructionPanel.SetActive(false);
+            // }
 
-        //    // if(instructionPanel.activeSelf && Input.GetMouseButtonDown(0))
-        //    // {
-        //    //     instructionPanel.SetActive(false);
-        //    // }
+        }
 
-        //}
-
-        //private static void QuitGame()
-        //{
-        //    if (Input.GetKey(KeyCode.Escape))
-        //    {
-        //        Application.Quit();
-        //    }
-        //}
+        private static void QuitGame()
+        {
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+        }
 
         public void GameStart()
         {

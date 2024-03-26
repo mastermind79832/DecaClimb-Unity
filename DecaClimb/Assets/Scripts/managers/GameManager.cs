@@ -1,11 +1,13 @@
+using DecaClimb.Ads;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Advertisements;
 using UnityEngine.SceneManagement;
 
 namespace DecaClimb
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : MonoSingletonGeneric<GameManager>
     {
 
         public GameObject gameOverPanel;
@@ -14,12 +16,15 @@ namespace DecaClimb
 
         public GameObject pillar;
 
+        public bool IsRewarded;
+
         void Start()
         {
             // Application.targetFrameRate = 60;
             gameOverPanel.SetActive(false);
             PausePanel.SetActive(false);
 
+            IsRewarded = false;
         }
 
         // Update is called once per frame
@@ -75,6 +80,8 @@ namespace DecaClimb
 
         public void MainMenu()
         {
+            AdsManager.Instance.interstitialAds.ShowAd();
+
             levelsHandle.SaveCheckPoint();
             Time.timeScale = 1;
             ScoreScript.ResetScore();
@@ -83,14 +90,21 @@ namespace DecaClimb
         }
 
         public void RetryButton()
-        {
-            gameOverPanel.SetActive(false);
-            //ScoreScript.ResetScore();
-            //levelsHandle.ResetLevel();
-            levelsHandle.isLevelUp = false;
-            levelsHandle.isRetryUsed = true;
-            SceneManager.LoadScene(2);
-        }
+		{
+			AdsManager.Instance.rewardAds.ShowAd();
+		}
 
-    }
+		public void GetRetryReward()
+		{
+			if (IsRewarded == true)
+			{
+				gameOverPanel.SetActive(false);
+				//ScoreScript.ResetScore();
+				//levelsHandle.ResetLevel();
+				levelsHandle.isLevelUp = false;
+				levelsHandle.isRetryUsed = true;
+				SceneManager.LoadScene(2);
+			}
+		}
+	}
 }

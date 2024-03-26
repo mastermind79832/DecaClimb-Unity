@@ -282,12 +282,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.372
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -601,7 +601,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 352538463}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1469955590}
+        m_TargetAssemblyTypeName: DecaClimb.GameManager, Assembly-CSharp
+        m_MethodName: RetryButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &352538463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1401,10 +1413,10 @@ RectTransform:
   - {fileID: 460041169}
   m_Father: {fileID: 103438808}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 542.78, y: -12.2209}
-  m_SizeDelta: {x: 990.96, y: 794.4419}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 2.7800293, y: -12.2209}
+  m_SizeDelta: {x: 990.95996, y: 794.4419}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &963194225
 GameObject:
@@ -1512,7 +1524,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1970746610}
-  colorMat: {fileID: 6336981455480947944}
 --- !u!1 &1068704097
 GameObject:
   m_ObjectHideFlags: 0
@@ -1922,6 +1933,7 @@ MonoBehaviour:
   gameOverPanel: {fileID: 2127438509}
   PausePanel: {fileID: 897616591}
   pillar: {fileID: 1874428543}
+  IsRewarded: 0
 --- !u!4 &1469955591
 Transform:
   m_ObjectHideFlags: 0
@@ -2831,10 +2843,10 @@ RectTransform:
   - {fileID: 1307592659}
   m_Father: {fileID: 103438808}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 542.78, y: -12.2209}
-  m_SizeDelta: {x: 990.96, y: 794.4419}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 2.7800293, y: -12.2209}
+  m_SizeDelta: {x: 990.95996, y: 794.4419}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2127438511
 MonoBehaviour:
@@ -2984,18 +2996,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bddf5613bfdbc0846b542e365ee5db86, type: 3}
---- !u!114 &6336981455480947944 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6336981456708240074, guid: bddf5613bfdbc0846b542e365ee5db86,
-    type: 3}
-  m_PrefabInstance: {fileID: 6336981455480947943}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd2af6180b8a894fb080340a3480f7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7378768352178671949
 PrefabInstance:
   m_ObjectHideFlags: 0
