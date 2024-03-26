@@ -5,14 +5,15 @@ using UnityEngine;
 public class MenuPlayerScript : MonoBehaviour
 {
 
-    public Rigidbody rb;
+    [SerializeField] private Rigidbody m_Rigidbody;
+    [SerializeField] private float m_JumpVelocity;
 
     private void OnCollisionEnter(Collision other)
     {
 
         if(other.gameObject.tag == "Ground")
         {
-            rb.velocity = Vector3.up * 7f;
+            m_Rigidbody.velocity = Vector3.up * m_JumpVelocity;
         }
     }
 }

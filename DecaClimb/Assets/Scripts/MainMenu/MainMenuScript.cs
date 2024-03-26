@@ -5,26 +5,19 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class MainMenuScript : MonoBehaviour
 {
-   
-
     public GameObject statPanel;
     public Text highScoreText;
     public Text checkPointText;
     public Text coinText;
 
-
     public GameObject instructionPanel;
     public GameObject cheatPanel;
-
     
     public InputField coinsCheat;
     public InputField levelCheat; 
 
-
     public Camera menuCamera;
     public GameObject colorMat;
-
-
 
     private void Start()
     {
@@ -38,9 +31,7 @@ public class MainMenuScript : MonoBehaviour
 
         coinText.text = CoinsManagerScript.GetCoin().ToString();
 
-
         menuCamera.backgroundColor = colorMat.GetComponent<ColorMatScript>().GetColorRandom();
-
 
     }
     
@@ -52,13 +43,10 @@ public class MainMenuScript : MonoBehaviour
             Application.Quit();
         }
 
-
         // if(instructionPanel.activeSelf && Input.GetMouseButtonDown(0))
         // {
         //     instructionPanel.SetActive(false);
         // }
-
-
 
     }
 
@@ -67,9 +55,7 @@ public class MainMenuScript : MonoBehaviour
         levelsHandle.ResetLevel();
         levelsHandle.isLevelUp = false;
         levelsHandle.isRetryUsed = false;
-        SceneManager.LoadScene(2);
-        
-        
+        SceneManager.LoadScene(2);    
     }
 
     public void Instuction()
@@ -102,10 +88,7 @@ public class MainMenuScript : MonoBehaviour
     {
         // int coin = int.Parse(coinsCheat.text);
         // int level =  int.Parse(levelCheat.text);
-
-        
-        
-        
+     
         if(coinsCheat.text != "")
         {
             int coin = System.Convert.ToInt32(coinsCheat.text);
@@ -126,6 +109,4 @@ public class MainMenuScript : MonoBehaviour
     {
         SceneManager.LoadScene(3);
     }
-
-
 }

@@ -18,8 +18,6 @@ public class GameManager : MonoBehaviour
         gameOverPanel.SetActive(false);
         PausePanel.SetActive(false);
         
-       
-        
     }
 
     // Update is called once per frame
@@ -38,7 +36,6 @@ public class GameManager : MonoBehaviour
                 MainMenu();
                 return;
             }
-
 
             if(PausePanel.activeSelf)
             {

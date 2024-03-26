@@ -81,7 +81,7 @@ TextureImporter:
       213: -5056345398242073941
     second: fieldFull
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -98,10 +98,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -111,11 +113,11 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -140,6 +142,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -151,6 +155,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -163,6 +168,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -175,6 +181,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -187,6 +194,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -199,6 +207,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 1
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -211,6 +220,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -679,85 +689,22 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Field 02
+      name: Field
       rect:
         serializedVersion: 2
-        x: 98
-        y: 185
-        width: 310
+        x: 49
+        y: 184
+        width: 409
         height: 102
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 49, y: 0, z: 48, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: da764207c32d004b0800000000000000
       internalID: -5476145989861218387
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FieldEnd1.1
-      rect:
-        serializedVersion: 2
-        x: 408
-        y: 185
-        width: 49
-        height: 102
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 58be6deb2cb4c6f60800000000000000
-      internalID: 8028875535492246405
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FieldEnd!.2
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 185
-        width: 49
-        height: 102
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e4ace6275e0e2c4d0800000000000000
-      internalID: -3115680716114965938
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fieldFull
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 185
-        width: 408
-        height: 102
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba2a91466a044d9b0800000000000000
-      internalID: -5056345398242073941
       vertices: []
       indices: 
       edges: []
@@ -772,9 +719,35 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      CloseBlue: -5185010886079610063
+      CloseGreen: 4136763370184070942
+      CloseRed: -9074816839684387123
+      Coin: 3803313470691511377
+      CoinBg: 6338120789092850363
+      Field: -5476145989861218387
+      Field01: 1413283964221171514
+      FieldEnd!.2: -3115680716114965938
+      FieldEnd1.1: 8028875535492246405
+      HeartEmpty: -5451771588737926812
+      HeartFull: 5501045653581765527
+      MenuGameOver: -518196648289947256
+      MenuInstrun: 3156974809550472209
+      MenuPause: 500076457810725723
+      MenuPopUp: -4882921520448252856
+      NoGreen: 8399852443632444371
+      NoRed: 7028748053915999257
+      Start: 1202933926648023320
+      Video01: -3889943114135706869
+      YesGreen: 7214214041929574054
+      YesRed: 1581908920386580408
+      fieldEnd01: 8450584339619042779
+      fieldFull: -5056345398242073941
+      settings: -8235102946058564307
+      title: 8856800391371511732
+      video02: 6565941177067540399
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
