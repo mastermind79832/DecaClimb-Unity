@@ -21,11 +21,15 @@ namespace DecaClimb
         public InputField coinsCheat;
         public InputField levelCheat;
 
+        [SerializeField] private GameObject m_LoadingPanel;
+        [SerializeField] private Slider m_Slider;
+
         public Camera menuCamera;
 
 		private void Awake()
 		{
-            StartCoroutine(DisplayBannerWithDelay());
+			m_LoadingPanel.SetActive(false);
+			StartCoroutine(DisplayBannerWithDelay());
 		}
 
 		private IEnumerator DisplayBannerWithDelay()
@@ -71,13 +75,27 @@ namespace DecaClimb
 
         public void GameStart()
         {
+
             levelsHandle.ResetLevel();
             levelsHandle.isLevelUp = false;
             levelsHandle.isRetryUsed = false;
-            SceneManager.LoadScene(2);
+
+            m_LoadingPanel.SetActive(true);
+            m_Slider.value = 0f;
+            AsyncOperation nextScene = SceneManager.LoadSceneAsync(2);
+            StartCoroutine(LoadNextScene(nextScene));
         }
 
-        public void Instuction()
+		IEnumerator LoadNextScene(AsyncOperation nextScene)
+		{
+            while(!nextScene.isDone)
+            {
+                m_Slider.value = nextScene.progress;
+                yield return null;
+            }
+		}
+
+		public void Instuction()
         {
             if (instructionPanel.activeSelf)
                 instructionPanel.SetActive(false);

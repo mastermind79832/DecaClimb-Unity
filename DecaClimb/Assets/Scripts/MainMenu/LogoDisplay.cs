@@ -10,7 +10,7 @@ namespace DecaClimb
 		// Start is called before the first frame update
 		private void Awake()
 		{
-            Application.targetFrameRate = 60;
+            Application.targetFrameRate = 90;
 		}
 		void Start()
         {
