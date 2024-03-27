@@ -2,6 +2,7 @@ using DecaClimb.Ads;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -28,9 +29,10 @@ namespace DecaClimb
 
 		private void Awake()
 		{
-			m_LoadingPanel.SetActive(false);
 			StartCoroutine(DisplayBannerWithDelay());
 		}
+
+        
 
 		private IEnumerator DisplayBannerWithDelay()
 		{
@@ -40,6 +42,7 @@ namespace DecaClimb
 
 		private void Start()
         {
+			m_LoadingPanel.SetActive(false);
             // Application.targetFrameRate = 60;
             statPanel.SetActive(false);
             cheatPanel.SetActive(false);
@@ -84,7 +87,6 @@ namespace DecaClimb
             m_Slider.value = 0f;
             AsyncOperation nextScene = SceneManager.LoadSceneAsync(2);
             StartCoroutine(LoadNextScene(nextScene));
-            AdsManager.Instance.interstitialAds.ShowAd();
         }
 
 		IEnumerator LoadNextScene(AsyncOperation nextScene)
@@ -92,6 +94,7 @@ namespace DecaClimb
             while(!nextScene.isDone)
             {
                 m_Slider.value = nextScene.progress;
+                Debug.Log(nextScene.progress);
                 yield return null;
             }
 		}

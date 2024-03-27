@@ -8,6 +8,12 @@ namespace DecaClimb.Ads
     public abstract class AdsController : MonoBehaviour, IUnityAdsLoadListener , IUnityAdsShowListener
 	{
 		[SerializeField] protected string androidUnitId;
+		public bool IsAdsLoaded { get; private set; }
+
+		private void Start()
+		{
+			IsAdsLoaded = false;
+		}
 
 		public virtual void LoadAd()
 		{
@@ -23,12 +29,12 @@ namespace DecaClimb.Ads
 		#region CallBack Load
 		public virtual void OnUnityAdsAdLoaded(string placementId)
 		{
-			
+			IsAdsLoaded = true;
 		}
 
 		public virtual void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
 		{
-			
+			IsAdsLoaded = false;
 		}
 
 		#endregion

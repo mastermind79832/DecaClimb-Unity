@@ -72,8 +72,6 @@ namespace DecaClimb
             Destroy(levelUpText);
         }
 
-
-        // Update is called once per frame
         void FixedUpdate()
         {
             if (ScoreScript.GetScore() > currentScore)
