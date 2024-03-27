@@ -84,6 +84,7 @@ namespace DecaClimb
             m_Slider.value = 0f;
             AsyncOperation nextScene = SceneManager.LoadSceneAsync(2);
             StartCoroutine(LoadNextScene(nextScene));
+            AdsManager.Instance.interstitialAds.ShowAd();
         }
 
 		IEnumerator LoadNextScene(AsyncOperation nextScene)
