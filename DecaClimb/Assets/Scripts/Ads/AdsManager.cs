@@ -11,10 +11,17 @@ namespace DecaClimb.Ads
         public BannerAds bannerAds;
         public RewardAds rewardAds;
 
+        public bool DeactivateAds;
+
 		protected override void Awake()
 		{
 			base.Awake();
             DontDestroyOnLoad(gameObject);
+
+            if(DeactivateAds)
+            {
+                return;
+            }
 
             bannerAds.LoadAd();
             interstitialAds.LoadAd();

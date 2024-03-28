@@ -17,10 +17,15 @@ namespace DecaClimb.Ads
 
 		public virtual void LoadAd()
 		{
+			if (AdsManager.Instance.DeactivateAds)
+				return;
 			Advertisement.Load(androidUnitId, this);
 		}
 		public virtual void ShowAd()
 		{
+			if (AdsManager.Instance.DeactivateAds)
+				return;
+
 			Advertisement.Show(androidUnitId, this);
 			LoadAd();
 		}
