@@ -1,12 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Advertisements;
 
 namespace DecaClimb.Ads
 {
-    public class BannerAds : AdsController
+	/// <summary>
+	/// For banner ads
+	/// </summary>
+    public class BannerAdsScript : AdsController
     {
 		private void Awake()
 		{

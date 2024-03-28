@@ -1,19 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
+
 using UnityEngine.Advertisements;
 
 namespace DecaClimb.Ads
 {
-    public class RewardAds : AdsController
+	/// <summary>
+	/// Ads that cannot be skip and gives reward on completion
+	/// </summary>
+    public class RewardAdsScript : AdsController
     {
+		public Action OnAdsShowCompleted { get; set; }
 		public override void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
 		{
 			base.OnUnityAdsShowComplete(placementId, showCompletionState);
 			if (showCompletionState == UnityAdsShowCompletionState.COMPLETED)
 			{
-				GameManager.Instance.IsRewarded = true;
-				GameManager.Instance.GetRetryReward();
+				OnAdsShowCompleted();
+				OnAdsShowCompleted = null;
 			}
 		}
 	}

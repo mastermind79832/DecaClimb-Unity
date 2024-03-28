@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
 namespace DecaClimb.Ads
 {
+	/// <summary>
+	/// parent class of ads
+	/// </summary>
     public abstract class AdsController : MonoBehaviour, IUnityAdsLoadListener , IUnityAdsShowListener
 	{
 		[SerializeField] protected string androidUnitId;

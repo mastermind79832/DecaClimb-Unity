@@ -80,7 +80,7 @@ namespace DecaClimb
 
         public void MainMenu()
         {
-            AdsManager.Instance.interstitialAds.ShowAd();
+            AdsManager.Instance.InterstitialAds.ShowAd();
 
             levelsHandle.SaveCheckPoint();
             Time.timeScale = 1;
@@ -91,7 +91,8 @@ namespace DecaClimb
 
         public void RetryButton()
 		{
-			AdsManager.Instance.rewardAds.ShowAd();
+            AdsManager.Instance.RewardAds.OnAdsShowCompleted = GetRetryReward;
+			AdsManager.Instance.RewardAds.ShowAd();
 		}
 
 		public void GetRetryReward()

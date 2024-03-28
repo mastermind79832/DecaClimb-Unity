@@ -39,7 +39,7 @@ namespace DecaClimb
 
             if(currentLevel%3 == 0)
             {
-                AdsManager.Instance.interstitialAds.ShowAd();
+                AdsManager.Instance.InterstitialAds.ShowAd();
             }
         }
 

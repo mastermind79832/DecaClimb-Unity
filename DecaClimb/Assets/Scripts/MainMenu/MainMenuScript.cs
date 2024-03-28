@@ -37,7 +37,7 @@ namespace DecaClimb
 		private IEnumerator DisplayBannerWithDelay()
 		{
             yield return new WaitForSeconds(1f);
-            AdsManager.Instance.bannerAds.ShowAd();
+            AdsManager.Instance.BannerAds.ShowAd();
 		}
 
 		private void Start()
