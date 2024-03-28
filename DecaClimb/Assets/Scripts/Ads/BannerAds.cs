@@ -10,19 +10,11 @@ namespace DecaClimb.Ads
     {
 		private void Awake()
 		{
-			if (AdsManager.Instance.DeactivateAds)
-			{
-				return;
-			}
 			Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
 		}
 
 		public override void LoadAd()
 		{
-			if (AdsManager.Instance.DeactivateAds)
-			{
-				return;
-			}
 			BannerLoadOptions options = new BannerLoadOptions()
 			{
 				loadCallback = BannerLoaded,
@@ -34,10 +26,6 @@ namespace DecaClimb.Ads
 
 		public override void ShowAd()
 		{
-			if (AdsManager.Instance.DeactivateAds)
-			{
-				return;
-			}
 			BannerOptions options = new BannerOptions()
 			{
 				showCallback = BannerShown,
@@ -50,10 +38,6 @@ namespace DecaClimb.Ads
 
 		public void HideBannerAd()
 		{
-			if (AdsManager.Instance.DeactivateAds)
-			{
-				return;
-			}
 			Advertisement.Banner.Hide();
 		}
 
