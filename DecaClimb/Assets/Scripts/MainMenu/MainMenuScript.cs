@@ -34,8 +34,6 @@ namespace DecaClimb
 			StartCoroutine(DisplayBannerWithDelay());
 		}
 
-        
-
 		private IEnumerator DisplayBannerWithDelay()
 		{
             yield return new WaitForSeconds(1f);

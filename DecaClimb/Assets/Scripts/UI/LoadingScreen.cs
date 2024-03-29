@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace DecaClimb
@@ -15,7 +16,7 @@ namespace DecaClimb
 			m_LoadingPanel.SetActive(false);
 		}
 
-		public void StartLoadinScreen()
+		public void StartLoadingScreen()
         {
             m_Slider.value = 0;
             m_LoadingPanel.SetActive(true);
