@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,6 +12,7 @@ namespace DecaClimb
 {
     public class MainMenuScript : MonoBehaviour
     {
+        public SceneAsset GameScene;
         public GameObject statPanel;
         public Text highScoreText;
         public Text checkPointText;
@@ -85,7 +87,7 @@ namespace DecaClimb
 
             m_LoadingPanel.SetActive(true);
             m_Slider.value = 0f;
-            AsyncOperation nextScene = SceneManager.LoadSceneAsync(2);
+            AsyncOperation nextScene = SceneManager.LoadSceneAsync(GameScene.name);
             StartCoroutine(LoadNextScene(nextScene));
         }
 

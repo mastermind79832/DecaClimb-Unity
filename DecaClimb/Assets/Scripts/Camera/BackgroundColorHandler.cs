@@ -6,7 +6,7 @@ namespace DecaClimb
 {
     public class BackgroundColorHandler : MonoSingletonGeneric<BackgroundColorHandler>
     { 
-        public Color[] colours;
+        [SerializeField] private Color[] colours;
 
 		protected override void Awake()
 		{
