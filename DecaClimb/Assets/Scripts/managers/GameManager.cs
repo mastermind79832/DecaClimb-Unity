@@ -16,15 +16,13 @@ namespace DecaClimb
 
         public GameObject pillar;
 
-        public bool IsRewarded;
+
 
         void Start()
         {
             // Application.targetFrameRate = 60;
             gameOverPanel.SetActive(false);
             PausePanel.SetActive(false);
-
-            IsRewarded = false;
         }
 
         // Update is called once per frame
@@ -75,8 +73,8 @@ namespace DecaClimb
             levelsHandle.IncreaseLevel();
             ScoreScript.SetHighScore();
             CoinsManagerScript.LevelUpCoin(levelsHandle.GetCurrentLevel() * 10);
-            SceneManager.LoadScene(2);
-        }
+			PersistantSceneService.Instance.LoadGameScene();
+		}
 
         public void MainMenu()
         {
@@ -86,7 +84,7 @@ namespace DecaClimb
             Time.timeScale = 1;
             ScoreScript.ResetScore();
             CoinsManagerScript.CoinUpdate();
-            SceneManager.LoadScene(1);
+            PersistantSceneService.Instance.LoadMainMenuScene();
         }
 
         public void RetryButton()
@@ -97,15 +95,13 @@ namespace DecaClimb
 
 		public void GetRetryReward()
 		{
-			if (IsRewarded == true)
-			{
-				gameOverPanel.SetActive(false);
-				//ScoreScript.ResetScore();
-				//levelsHandle.ResetLevel();
-				levelsHandle.isLevelUp = false;
-				levelsHandle.isRetryUsed = true;
-				SceneManager.LoadScene(2);
-			}
+			gameOverPanel.SetActive(false);
+			//ScoreScript.ResetScore();
+			//levelsHandle.ResetLevel();
+			levelsHandle.isLevelUp = false;
+			levelsHandle.isRetryUsed = true;
+            PersistantSceneService.Instance.LoadGameScene();
+
 		}
 	}
 }

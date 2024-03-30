@@ -25,7 +25,6 @@ namespace DecaClimb.Ads
 		protected override void Awake()
 		{
 			base.Awake();
-            DontDestroyOnLoad(gameObject);
 
             BannerAds.LoadAd();
             InterstitialAds.LoadAd();

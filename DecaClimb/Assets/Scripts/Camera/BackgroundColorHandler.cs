@@ -8,12 +8,6 @@ namespace DecaClimb
     { 
         [SerializeField] private Color[] colours;
 
-		protected override void Awake()
-		{
-			base.Awake();
-            DontDestroyOnLoad(gameObject);
-		}
-
 		public Color GetColorRandom()
         {
             int index  =  Random.Range(0,colours.Length);

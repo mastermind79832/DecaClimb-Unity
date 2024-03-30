@@ -10,7 +10,7 @@ namespace DecaClimb
     /// <summary>
     /// Holds reference to all scene
     /// </summary>
-    public class SceneService : MonoSingletonGeneric<SceneService>
+    public class PersistantSceneService : MonoSingletonGeneric<PersistantSceneService>
     {
 		[Header("Scene")]
         [SerializeField] private SceneAsset m_LogoIntroScene;
@@ -31,10 +31,6 @@ namespace DecaClimb
 		{
 			base.Awake();
 			m_AsyncOperations = new();
-		}
-
-		private void Start()
-		{
 			SceneManager.LoadScene(m_LogoIntroScene.name, LoadSceneMode.Additive);
 			m_CurrentScene = m_LogoIntroScene;
 		}
@@ -43,15 +39,17 @@ namespace DecaClimb
 		{
 			m_LoadingScreen.StartLoadingScreen();
 			m_AsyncOperations.Clear();
-
-			StartCoroutine(LoadingScene(scene));
-		}
-
-		private IEnumerator LoadingScene(SceneAsset scene)
-		{
 			m_AsyncOperations.Add(SceneManager.UnloadSceneAsync(m_CurrentScene.name));
 			m_AsyncOperations.Add(SceneManager.LoadSceneAsync(scene.name, LoadSceneMode.Additive));
-			OnSceneLoadingStart();
+			StartCoroutine(LoadingScene());
+			m_CurrentScene = scene;
+		}
+
+		private IEnumerator LoadingScene()
+		{
+			//m_AsyncOperations.Add(SceneManager.UnloadSceneAsync(m_CurrentScene.name));
+			//m_AsyncOperations.Add(SceneManager.LoadSceneAsync(scene.name, LoadSceneMode.Additive));
+			OnSceneLoadingStart?.Invoke();
 
 			bool isDone = false;
 			float progress;
@@ -60,7 +58,7 @@ namespace DecaClimb
             {
 				isDone = true;
 				progress = 0;
-                foreach (var operation in m_AsyncOperations)
+                foreach (AsyncOperation operation in m_AsyncOperations)
 				{
 					if (!operation.isDone)
 						isDone = false;
@@ -74,9 +72,8 @@ namespace DecaClimb
             
 			}
 
-			OnSceneLoadingComplete();
+			OnSceneLoadingComplete?.Invoke();
 			m_LoadingScreen.LoadingComplete();
-			m_CurrentScene = scene;
 		}
 
 		#region Specific Scene

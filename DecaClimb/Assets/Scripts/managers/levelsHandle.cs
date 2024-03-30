@@ -16,8 +16,6 @@ namespace DecaClimb
 
         public static bool isRetryUsed;
 
-
-
         public static int GetCurrentLevel()
         {
             return currentLevel;
@@ -25,13 +23,11 @@ namespace DecaClimb
 
         public static void ResetLevel()
         {
-            currentLevel = checkPointLevel;
+            currentLevel = PersistantDataHandler.Instance.Checkpoint;
         }
 
         public static void IncreaseLevel()
         {
-
-
             currentLevel += 1;
             isLevelUp = true;
             if (currentLevel > checkPointLevel && currentLevel % 5 == 0)

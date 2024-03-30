@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace DecaClimb
 {
@@ -20,7 +18,7 @@ namespace DecaClimb
         IEnumerator RunLogo()
         {
             yield return new WaitForSeconds(2f);
-            SceneManager.LoadScene(1);
+            PersistantSceneService.Instance.LoadMainMenuScene();
         }
 
     }
