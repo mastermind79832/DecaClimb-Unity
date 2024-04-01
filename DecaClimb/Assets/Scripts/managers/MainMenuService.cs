@@ -11,7 +11,7 @@ namespace DecaClimb
 			base.Awake();
 			StartCoroutine(DisplayBannerWithDelay());
 
-			Camera.main.backgroundColor = BackgroundColorHandler.Instance.GetColorRandom();
+			PersistantSceneService.Instance.MainCamera.backgroundColor = BackgroundColorHandler.Instance.GetColorRandom();
 		}
 
 		private IEnumerator DisplayBannerWithDelay()

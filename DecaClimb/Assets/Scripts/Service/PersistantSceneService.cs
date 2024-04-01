@@ -19,10 +19,14 @@ namespace DecaClimb
 		[SerializeField] private SceneAsset m_UpgradeScene;
 		private SceneAsset m_CurrentScene;
 
-		[Header("Helper Screen")]
+		[Header("Helper")]
 		[SerializeField] private LoadingScreen m_LoadingScreen;
 
+		[SerializeField] private Camera m_MainCamera;
+		public Camera MainCamera { get { return m_MainCamera; } }
+
 		private List<AsyncOperation> m_AsyncOperations;
+
 
 		public event Action OnSceneLoadingStart;
 		public event Action OnSceneLoadingComplete;
