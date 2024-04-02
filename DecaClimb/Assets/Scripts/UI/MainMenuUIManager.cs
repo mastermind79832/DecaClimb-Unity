@@ -25,9 +25,9 @@ namespace DecaClimb
             m_CheatPanel.SetActive(false);
             m_InstructionPanel.SetActive(false);
            
-            m_HighScoreText.text = PersistantDataHandler.Instance.HighScore.ToString();
-            m_CheckPointText.text = PersistantDataHandler.Instance.Checkpoint.ToString();
-            m_CoinText.text = PersistantDataHandler.Instance.AquiredCoins.ToString();
+            m_HighScoreText.text = PersistantDataHandler.Instance.ProgressManager.HighScore.ToString();
+            m_CheckPointText.text = PersistantDataHandler.Instance.ProgressManager.Checkpoint.ToString();
+            m_CoinText.text = PersistantDataHandler.Instance.EconomyManager.Coins.ToString();
 
             m_PlayButton.onClick.AddListener(MainMenuService.Instance.GameStart);
             m_UpgradeButton.onClick.AddListener(MainMenuService.Instance.OpenUpgrade);
@@ -55,17 +55,17 @@ namespace DecaClimb
             if (m_CoinsCheat.text != "")
             {
                 int coin = System.Convert.ToInt32(m_CoinsCheat.text);
-                PlayerPrefs.SetInt("Coins", coin);
-                m_CoinText.text = CoinsManagerScript.GetCoin().ToString();
+				PersistantDataHandler.Instance.EconomyManager.SetCoins(coin);
+                m_CoinText.text = PersistantDataHandler.Instance.EconomyManager.Coins.ToString();
             }
 
 
             if (m_LevelCheat.text != "")
             {
                 int level = System.Convert.ToInt32(m_LevelCheat.text);
-                PlayerPrefs.SetInt("CheckPoint", level);
-                m_CheckPointText.text = levelsHandle.GetCheckpoint().ToString();
-            }
+				PersistantDataHandler.Instance.ProgressManager.SetCheckPoint(level);
+                m_CheckPointText.text = PersistantDataHandler.Instance.ProgressManager.Checkpoint.ToString();
+			}
         }
         #endregion
 

@@ -29,16 +29,12 @@ namespace DecaClimb
 
         public static void SetHighScore()
         {
-            if (score > highscore)
-            {
-                highscore = score;
-                PlayerPrefs.SetInt("Highscore", highscore);
-            }
+            PersistantDataHandler.Instance.ProgressManager.SetHighscore(score);
         }
 
         public static int GetHighscore()
         {
-            highscore = PlayerPrefs.GetInt("Highscore");
+            highscore = PersistantDataHandler.Instance.ProgressManager.HighScore;
             return highscore;
         }
 

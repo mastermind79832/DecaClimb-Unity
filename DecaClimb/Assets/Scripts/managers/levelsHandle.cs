@@ -23,7 +23,7 @@ namespace DecaClimb
 
         public static void ResetLevel()
         {
-            currentLevel = PersistantDataHandler.Instance.Checkpoint;
+            currentLevel = PersistantDataHandler.Instance.ProgressManager.Checkpoint;
         }
 
         public static void IncreaseLevel()
@@ -41,7 +41,7 @@ namespace DecaClimb
 
         public static int GetCheckpoint()
         {
-            checkPointLevel = PersistantDataHandler.Instance.Checkpoint;
+            checkPointLevel = PersistantDataHandler.Instance.ProgressManager.Checkpoint;
             return checkPointLevel;
         }
 
@@ -49,7 +49,7 @@ namespace DecaClimb
         {
             // Show rewarded ads to save checkpoint
             //PlayerPrefs.SetInt("CheckPoint", checkPointLevel);
-            PersistantDataHandler.Instance.SetCheckPoint(checkPointLevel);
+            PersistantDataHandler.Instance.ProgressManager.SetCheckPoint(checkPointLevel);
 
         }
 

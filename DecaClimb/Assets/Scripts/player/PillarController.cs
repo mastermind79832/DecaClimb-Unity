@@ -35,7 +35,7 @@ namespace DecaClimb
                 float delta = lastTapPos.x - curTapPos.x;
                 lastTapPos = curTapPos;
 
-                transform.Rotate(Vector3.up * m_Speed * delta / 100);
+                transform.Rotate(delta * m_Speed * Vector3.up / 100);
 
             }
 

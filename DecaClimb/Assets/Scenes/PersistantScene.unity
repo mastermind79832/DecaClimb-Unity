@@ -216,7 +216,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &257366809
 MonoBehaviour:
@@ -447,12 +447,15 @@ GameObject:
   m_Component:
   - component: {fileID: 535763839}
   - component: {fileID: 535763838}
+  - component: {fileID: 535763842}
+  - component: {fileID: 535763841}
+  - component: {fileID: 535763840}
   m_Layer: 0
   m_Name: Persistant Data Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &535763838
 MonoBehaviour:
@@ -466,9 +469,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96209886e6293fd478edab9428ad1312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HighScore: 0
-  m_AquiredCoins: 0
-  m_CheckPoint: 0
+  m_ProgressManager: {fileID: 535763841}
+  m_SettingsManager: {fileID: 535763840}
+  m_EconomyManager: {fileID: 535763842}
 --- !u!4 &535763839
 Transform:
   m_ObjectHideFlags: 0
@@ -484,6 +487,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &535763840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535763837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6172f30336f93ff4f9a06bc3b7c96864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &535763841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535763837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7870d30d4c43bb43987fde5eb04bfeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HighScore: 0
+  m_CheckPoint: 0
+--- !u!114 &535763842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535763837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5198c73a1908e2a40b0067de37b49428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Coins: 0
 --- !u!1 &558090494
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,7 +900,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &823171655
 MonoBehaviour:
@@ -1034,7 +1076,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1017816439
 Transform:
@@ -1114,7 +1156,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &1226663712
 MonoBehaviour:
