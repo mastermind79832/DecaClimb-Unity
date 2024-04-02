@@ -8,6 +8,7 @@ namespace DecaClimb
     {
         private Vector2 lastTapPos;
         private Vector3 startRotation;
+        [SerializeField] private float m_Speed;
         // Start is called before the first frame update
         void Start()
         {
@@ -34,7 +35,7 @@ namespace DecaClimb
                 float delta = lastTapPos.x - curTapPos.x;
                 lastTapPos = curTapPos;
 
-                transform.Rotate(Vector3.up * delta / 5);
+                transform.Rotate(Vector3.up * m_Speed * delta / 100);
 
             }
 

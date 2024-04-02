@@ -4,34 +4,31 @@ using UnityEngine;
 
 namespace DecaClimb
 {
-    public class player : MonoBehaviour
+    public class Player : MonoBehaviour
     {
-
         private float jumpvelocity;
-        public float jp = 7f;
+        [SerializeField] private float jp = 5.2f;
 
-        public GameObject multiplierDisp;
+        [SerializeField] private GameObject multiplierDisp;
 
-        public float maxMultTime;
+        [SerializeField] private float maxMultTime = 2;
 
         private int multiplier;
 
         private float multiplierTime;
 
-        public Rigidbody rb;
+        [SerializeField] private Rigidbody rb;
         float pos = 4;
         private bool isDead = false;
 
-        public GameManager gm;
+        [SerializeField] private GameManager gm;
 
-        public GameObject progressPos;
+        [SerializeField] private GameObject progressPos;
 
         // Start is called before the first frame update
         void Start()
         {
-
             multiplierTime = maxMultTime;
-
         }
 
         // Update is called once per frame

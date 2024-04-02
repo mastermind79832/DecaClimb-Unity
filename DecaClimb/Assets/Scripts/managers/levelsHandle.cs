@@ -41,14 +41,16 @@ namespace DecaClimb
 
         public static int GetCheckpoint()
         {
-            checkPointLevel = PlayerPrefs.GetInt("CheckPoint");
+            checkPointLevel = PersistantDataHandler.Instance.Checkpoint;
             return checkPointLevel;
         }
 
         public static void SaveCheckPoint()
         {
             // Show rewarded ads to save checkpoint
-            PlayerPrefs.SetInt("CheckPoint", checkPointLevel);
+            //PlayerPrefs.SetInt("CheckPoint", checkPointLevel);
+            PersistantDataHandler.Instance.SetCheckPoint(checkPointLevel);
+
         }
 
     }
