@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace DecaClimb
 {
+    /// <summary>
+    /// Script for loading screen
+    /// </summary>
     public class LoadingScreen : MonoBehaviour
     {
         [SerializeField] private GameObject m_LoadingPanel;

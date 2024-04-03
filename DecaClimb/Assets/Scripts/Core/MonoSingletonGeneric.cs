@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace DecaClimb
 {
+	/// <summary>
+	/// Class used to make singtions
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
 	public class MonoSingletonGeneric<T> : MonoBehaviour where T : MonoSingletonGeneric<T>
 	{
 		private static T m_Instance;

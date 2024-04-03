@@ -1,10 +1,11 @@
-using DecaClimb.Ads;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace DecaClimb
 {
+    /// <summary>
+    /// Manages the UI of mainmenu
+    /// </summary>
     public class MainMenuUIManager : MonoBehaviour
     {
         [SerializeField] private Text m_HighScoreText;

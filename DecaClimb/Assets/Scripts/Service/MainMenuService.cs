@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace DecaClimb
 {
+	/// <summary>
+	/// Service that handles the Main menu.
+	/// </summary>
     public class MainMenuService : MonoSingletonGeneric<MainMenuService>  
     {
 		protected override void Awake()

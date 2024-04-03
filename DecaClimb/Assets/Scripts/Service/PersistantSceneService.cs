@@ -8,7 +8,8 @@ using UnityEngine.SceneManagement;
 namespace DecaClimb
 {
     /// <summary>
-    /// Holds reference to all scene
+    /// A singleton that holds reference to all scene.
+	/// Manages async scene transitions
     /// </summary>
     public class PersistantSceneService : MonoSingletonGeneric<PersistantSceneService>
     {
@@ -26,7 +27,6 @@ namespace DecaClimb
 		public Camera MainCamera { get { return m_MainCamera; } }
 
 		private List<AsyncOperation> m_AsyncOperations;
-
 
 		public event Action OnSceneLoadingStart;
 		public event Action OnSceneLoadingComplete;
@@ -51,8 +51,6 @@ namespace DecaClimb
 
 		private IEnumerator LoadingScene()
 		{
-			//m_AsyncOperations.Add(SceneManager.UnloadSceneAsync(m_CurrentScene.name));
-			//m_AsyncOperations.Add(SceneManager.LoadSceneAsync(scene.name, LoadSceneMode.Additive));
 			OnSceneLoadingStart?.Invoke();
 
 			bool isDone = false;

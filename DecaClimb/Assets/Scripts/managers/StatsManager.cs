@@ -1,10 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecaClimb
 {
+	/// <summary>
+	/// Handles the statistics of the player. Like score and checkpoint Level
+	/// </summary>
     public class StatsManager : MonoBehaviour
     {
 		private const string STR_HIGHSCORE = "Highscore";

@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace DecaClimb
 {
+	/// <summary>
+	/// class that handles the Loading and saving settings
+	/// </summary>
     public class SettingsManager : MonoBehaviour
     {
 		private const string STR_VERSION = "Version";

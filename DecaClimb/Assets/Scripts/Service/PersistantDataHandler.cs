@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace DecaClimb
 {
+	/// <summary>
+	/// script that handles the all the data related funcitonality
+	/// </summary>
     public class PersistantDataHandler : MonoSingletonGeneric<PersistantDataHandler>
     {
         [SerializeField] private StatsManager m_ProgressManager;

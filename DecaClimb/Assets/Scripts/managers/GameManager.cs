@@ -1,13 +1,13 @@
 using DecaClimb.Ads;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Advertisements;
-using UnityEngine.SceneManagement;
 
 namespace DecaClimb
 {
-    public class GameManager : MonoSingletonGeneric<GameManager>
+
+    /// <summary>
+    /// Hnadles the logic in the gameplay.
+    /// </summary>
+    public class GameManager : MonoBehaviour
     {
 
         public GameObject gameOverPanel;
@@ -17,8 +17,7 @@ namespace DecaClimb
         public GameObject pillar;
 
 
-
-        void Start()
+		void Start()
         {
             // Application.targetFrameRate = 60;
             gameOverPanel.SetActive(false);

@@ -1,10 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace DecaClimb
 {
+	/// <summary>
+	/// A script that handles the economy of the game
+	/// </summary>
     public class EconomyManager : MonoBehaviour
     {
 		private const string STR_COINS = "Coins";
