@@ -891,10 +891,6 @@ GameObject:
   m_Component:
   - component: {fileID: 823171660}
   - component: {fileID: 823171659}
-  - component: {fileID: 823171658}
-  - component: {fileID: 823171657}
-  - component: {fileID: 823171656}
-  - component: {fileID: 823171655}
   m_Layer: 0
   m_Name: Ads Manager
   m_TagString: Untagged
@@ -902,59 +898,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &823171655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 823171654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caa401775f9fd894c88240c550a92706, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  androidUnitId: Rewarded_Android
---- !u!114 &823171656
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 823171654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e34711194d6efd469eeed200e9efe3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  androidUnitId: Interstitial_Android
---- !u!114 &823171657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 823171654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afebe4558ff01c949a937edbaacb052a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  androidUnitId: Banner_Android
---- !u!114 &823171658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 823171654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec6301862444901409142654895d81f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AndroidGameId: 4241799
-  m_IsTesting: 1
 --- !u!114 &823171659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -967,10 +910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6f213d56fcd61d4c88d892d75a34aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InitializeAds: {fileID: 823171658}
-  m_InterstitialAds: {fileID: 823171656}
-  m_BannerAds: {fileID: 823171657}
-  m_RewardAds: {fileID: 823171655}
+  m_AdsDataSO: {fileID: 11400000, guid: 3c01efd7a5d6696478ddbd1a50fb146c, type: 2}
 --- !u!4 &823171660
 Transform:
   m_ObjectHideFlags: 0
@@ -978,6 +918,37 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 823171654}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &854422576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 854422577}
+  m_Layer: 0
+  m_Name: Persistant Service Locator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &854422577
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854422576}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1436,6 +1407,7 @@ RectTransform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 854422577}
   - {fileID: 535763839}
   - {fileID: 1226663713}
   - {fileID: 558090497}

@@ -6,23 +6,24 @@ namespace DecaClimb.Ads
 	/// <summary>
 	/// parent class of ads
 	/// </summary>
-    public abstract class AdsController : MonoBehaviour, IUnityAdsLoadListener , IUnityAdsShowListener
+	public abstract class AdsController : IUnityAdsLoadListener, IUnityAdsShowListener
 	{
-		[SerializeField] protected string androidUnitId;
+		[SerializeField] protected string m_AndroidUnitId;
 		public bool IsAdsLoaded { get; private set; }
 
-		private void Start()
+		public AdsController(string id)
 		{
+			m_AndroidUnitId = id;
 			IsAdsLoaded = false;
 		}
 
 		public virtual void LoadAd()
 		{
-			Advertisement.Load(androidUnitId, this);
+			Advertisement.Load(m_AndroidUnitId, this);
 		}
 		public virtual void ShowAd()
 		{
-			Advertisement.Show(androidUnitId, this);
+			Advertisement.Show(m_AndroidUnitId, this);
 			LoadAd();
 		}
 

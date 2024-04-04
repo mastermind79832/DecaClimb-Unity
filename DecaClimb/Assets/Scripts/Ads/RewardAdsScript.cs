@@ -9,6 +9,10 @@ namespace DecaClimb.Ads
 	/// </summary>
     public class RewardAdsScript : AdsController
     {
+		public RewardAdsScript(string id) : base(id)
+		{
+		}
+
 		public Action OnAdsShowCompleted { get; set; }
 		public override void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
 		{

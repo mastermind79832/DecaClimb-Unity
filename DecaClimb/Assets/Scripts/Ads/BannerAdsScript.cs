@@ -7,7 +7,7 @@ namespace DecaClimb.Ads
 	/// </summary>
     public class BannerAdsScript : AdsController
     {
-		private void Awake()
+		public BannerAdsScript(string id) : base(id)
 		{
 			Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
 		}
@@ -20,7 +20,7 @@ namespace DecaClimb.Ads
 				errorCallback = BannerLoadedError
 			};
 
-			Advertisement.Banner.Load(androidUnitId, options);
+			Advertisement.Banner.Load(m_AndroidUnitId, options);
 		}
 
 		public override void ShowAd()
@@ -32,7 +32,7 @@ namespace DecaClimb.Ads
 				hideCallback = BannerHidden
 			};
 
-			Advertisement.Banner.Show(androidUnitId, options);
+			Advertisement.Banner.Show(m_AndroidUnitId, options);
 		}
 
 		public void HideBannerAd()
