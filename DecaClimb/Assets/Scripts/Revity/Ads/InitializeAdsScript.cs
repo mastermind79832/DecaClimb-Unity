@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-namespace DecaClimb.Ads
+namespace Revity.Ads
 {
 	/// <summary>
 	/// Script that intializes unity ads according to ID 

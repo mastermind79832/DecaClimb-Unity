@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Revity.Core;
 
-namespace DecaClimb
+namespace Revity.DecaClimb
 {
 	/// <summary>
 	/// Script that handles all the states of the game.

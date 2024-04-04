@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Revity.Core;
 
-namespace DecaClimb
+namespace Revity.DecaClimb
 {
     public class BackgroundColorHandler : MonoSingletonGeneric<BackgroundColorHandler>
     { 

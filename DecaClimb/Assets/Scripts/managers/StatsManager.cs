@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace DecaClimb
+namespace Revity.DecaClimb
 {
 	/// <summary>
 	/// Handles the statistics of the player. Like score and checkpoint Level

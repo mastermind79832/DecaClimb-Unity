@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace DecaClimb
+namespace Revity.DecaClimb
 {
     /// <summary>
     /// Script for loading screen

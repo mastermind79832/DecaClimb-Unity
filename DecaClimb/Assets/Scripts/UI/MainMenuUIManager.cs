@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace DecaClimb
+namespace Revity.DecaClimb
 {
     /// <summary>
     /// Manages the UI of mainmenu

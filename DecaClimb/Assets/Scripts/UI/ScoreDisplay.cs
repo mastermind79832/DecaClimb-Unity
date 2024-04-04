@@ -4,7 +4,7 @@ using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace DecaClimb
+namespace Revity.DecaClimb
 {
     public class ScoreDisplay : MonoBehaviour
     {

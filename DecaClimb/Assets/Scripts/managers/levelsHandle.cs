@@ -1,9 +1,9 @@
-using DecaClimb.Ads;
+using Revity.Ads;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DecaClimb
+namespace Revity.DecaClimb
 {
     public static class levelsHandle
     {

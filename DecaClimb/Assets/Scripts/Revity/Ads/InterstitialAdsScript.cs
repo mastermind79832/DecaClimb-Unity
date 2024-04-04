@@ -1,5 +1,5 @@
 
-namespace DecaClimb.Ads
+namespace Revity.Ads
 {
 	/// <summary>
 	/// for intertital ads

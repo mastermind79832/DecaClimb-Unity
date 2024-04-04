@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-namespace DecaClimb
+namespace Revity.DecaClimb
 {
     public class PillarSpwan : MonoBehaviour
     {

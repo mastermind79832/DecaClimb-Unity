@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace DecaClimb
+namespace Revity.DecaClimb
 {
     public static class CoinsManagerScript
     {

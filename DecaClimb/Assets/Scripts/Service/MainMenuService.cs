@@ -1,8 +1,10 @@
-using DecaClimb.Ads;
+using Revity.Ads;
 using System.Collections;
 using UnityEngine;
+using Revity.Core;
+using Revity.DecaClimb;
 
-namespace DecaClimb
+namespace Revity.DecaClimb
 {
 	/// <summary>
 	/// Service that handles the Main menu.

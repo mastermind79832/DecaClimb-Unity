@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-namespace DecaClimb
+namespace Revity.DecaClimb
 {
 	/// <summary>
 	/// class that handles the Loading and saving settings

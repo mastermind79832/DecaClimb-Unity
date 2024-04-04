@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace DecaClimb
+namespace Revity.Core
 {
 	/// <summary>
-	/// Class used to make singtions
+	/// Class used to make singletons
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	public class MonoSingletonGeneric<T> : MonoBehaviour where T : MonoSingletonGeneric<T>

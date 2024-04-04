@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Revity.Core;
 
-namespace DecaClimb
+namespace Revity.DecaClimb
 {
     /// <summary>
     /// A singleton that holds reference to all scene.
@@ -22,7 +23,6 @@ namespace DecaClimb
 
 		[Header("Helper")]
 		[SerializeField] private LoadingScreen m_LoadingScreen;
-
 		[SerializeField] private Camera m_MainCamera;
 		public Camera MainCamera { get { return m_MainCamera; } }
 

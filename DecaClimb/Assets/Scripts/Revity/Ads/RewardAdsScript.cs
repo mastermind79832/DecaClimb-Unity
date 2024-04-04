@@ -2,7 +2,7 @@ using System;
 
 using UnityEngine.Advertisements;
 
-namespace DecaClimb.Ads
+namespace Revity.Ads
 {
 	/// <summary>
 	/// Ads that cannot be skip and gives reward on completion

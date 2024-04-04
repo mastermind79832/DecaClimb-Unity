@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace DecaClimb
+namespace Revity.DecaClimb
 {
     public class LogoDisplay : MonoBehaviour
     {

@@ -1,8 +1,7 @@
-using System;
-using System.Diagnostics.Tracing;
 using UnityEngine;
+using Revity.Core;
 
-namespace DecaClimb
+namespace Revity.DecaClimb
 {
 	/// <summary>
 	/// script that handles the all the data related funcitonality

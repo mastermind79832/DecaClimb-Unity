@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace DecaClimb
+namespace Revity.DecaClimb
 {
     public class ProgressBarScript : MonoBehaviour
     {

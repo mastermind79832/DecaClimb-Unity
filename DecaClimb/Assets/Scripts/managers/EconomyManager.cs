@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DecaClimb
+namespace Revity.DecaClimb
 {
 	/// <summary>
 	/// A script that handles the economy of the game

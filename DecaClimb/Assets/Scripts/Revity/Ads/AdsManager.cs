@@ -1,7 +1,7 @@
-using System;
 using UnityEngine;
+using Revity.Core;
 
-namespace DecaClimb.Ads
+namespace Revity.Ads
 {
     /// <summary>
     /// Manages reference to all ads script
@@ -32,8 +32,8 @@ namespace DecaClimb.Ads
 
 		private void InitializeScripts()
 		{
-			m_InitializeAds = new InitializeAdsScript(m_AdsDataSO.AndroidGameId, m_AdsDataSO.IsTesting);
-            m_BannerAds = new BannerAdsScript(m_AdsDataSO.BannerAdsUnitId);
+			m_InitializeAds = new InitializeAdsScript(m_AdsDataSO.DeviceGameId, m_AdsDataSO.IsTesting);
+            m_BannerAds = new BannerAdsScript(m_AdsDataSO.BannerAdsUnitId, m_AdsDataSO.BannerPosition);
             m_InterstitialAds = new InterstitialAdsScript(m_AdsDataSO.InterstitalAdsUnitId);
             m_RewardAds = new RewardAdsScript(m_AdsDataSO.RewardAdsUnitId);
 		}

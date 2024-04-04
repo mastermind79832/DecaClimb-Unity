@@ -1,7 +1,7 @@
-using DecaClimb.Ads;
+using Revity.Ads;
 using UnityEngine;
 
-namespace DecaClimb
+namespace Revity.DecaClimb
 {
 
     /// <summary>

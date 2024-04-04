@@ -1,15 +1,15 @@
 using UnityEngine.Advertisements;
 
-namespace DecaClimb.Ads
+namespace Revity.Ads
 {
 	/// <summary>
 	/// For banner ads
 	/// </summary>
     public class BannerAdsScript : AdsController
     {
-		public BannerAdsScript(string id) : base(id)
+		public BannerAdsScript(string id, BannerPosition bannerPosition) : base(id)
 		{
-			Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
+			Advertisement.Banner.SetPosition(bannerPosition);
 		}
 
 		public override void LoadAd()
@@ -20,7 +20,7 @@ namespace DecaClimb.Ads
 				errorCallback = BannerLoadedError
 			};
 
-			Advertisement.Banner.Load(m_AndroidUnitId, options);
+			Advertisement.Banner.Load(m_DeviceUnitId, options);
 		}
 
 		public override void ShowAd()
@@ -32,7 +32,7 @@ namespace DecaClimb.Ads
 				hideCallback = BannerHidden
 			};
 
-			Advertisement.Banner.Show(m_AndroidUnitId, options);
+			Advertisement.Banner.Show(m_DeviceUnitId, options);
 		}
 
 		public void HideBannerAd()

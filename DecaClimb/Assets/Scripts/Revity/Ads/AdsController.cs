@@ -1,29 +1,29 @@
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-namespace DecaClimb.Ads
+namespace Revity.Ads
 {
 	/// <summary>
 	/// parent class of ads
 	/// </summary>
 	public abstract class AdsController : IUnityAdsLoadListener, IUnityAdsShowListener
 	{
-		[SerializeField] protected string m_AndroidUnitId;
+		[SerializeField] protected string m_DeviceUnitId;
 		public bool IsAdsLoaded { get; private set; }
 
 		public AdsController(string id)
 		{
-			m_AndroidUnitId = id;
+			m_DeviceUnitId = id;
 			IsAdsLoaded = false;
 		}
 
 		public virtual void LoadAd()
 		{
-			Advertisement.Load(m_AndroidUnitId, this);
+			Advertisement.Load(m_DeviceUnitId, this);
 		}
 		public virtual void ShowAd()
 		{
-			Advertisement.Show(m_AndroidUnitId, this);
+			Advertisement.Show(m_DeviceUnitId, this);
 			LoadAd();
 		}
 
