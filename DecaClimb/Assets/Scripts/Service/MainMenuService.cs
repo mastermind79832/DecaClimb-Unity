@@ -2,7 +2,7 @@ using Revity.Ads;
 using System.Collections;
 using UnityEngine;
 using Revity.Core;
-using Revity.DecaClimb;
+using Revity.DecaClimb.Persistant;
 
 namespace Revity.DecaClimb
 {
@@ -16,7 +16,7 @@ namespace Revity.DecaClimb
 			base.Awake();
 			StartCoroutine(DisplayBannerWithDelay());
 
-			PersistantSceneService.Instance.MainCamera.backgroundColor = BackgroundColorHandler.Instance.GetColorRandom();
+			PersistantServiceLocator.Instance.Camera.backgroundColor = PersistantServiceLocator.Instance.DataHandler.BackgroundColor.GetColorRandom();
 		}
 
 		private IEnumerator DisplayBannerWithDelay()
@@ -44,12 +44,12 @@ namespace Revity.DecaClimb
 			levelsHandle.isLevelUp = false;
 			levelsHandle.isRetryUsed = false;
 
-			PersistantSceneService.Instance.LoadGameScene();
+			PersistantServiceLocator.Instance.SceneService.LoadGameScene();
 		}
 
 		public void OpenUpgrade()
 		{
-			PersistantSceneService.Instance.LoadUpgradeScene();
+			PersistantServiceLocator.Instance.SceneService.LoadUpgradeScene();
 		}
 
 	}

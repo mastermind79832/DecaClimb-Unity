@@ -1,3 +1,4 @@
+using Revity.DecaClimb.Persistant;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,12 +30,12 @@ namespace Revity.DecaClimb
 
         public static void SetHighScore()
         {
-            PersistantDataHandler.Instance.ProgressManager.SetHighscore(score);
+			PersistantServiceLocator.Instance.DataHandler.HighscoreData.SaveHighscore(score);
         }
 
         public static int GetHighscore()
         {
-            highscore = PersistantDataHandler.Instance.ProgressManager.HighScore;
+            highscore = PersistantServiceLocator.Instance.DataHandler.HighscoreData.HighScore;
             return highscore;
         }
 

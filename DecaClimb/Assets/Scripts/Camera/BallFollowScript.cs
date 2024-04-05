@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Revity.DecaClimb.Persistant;
 using UnityEngine;
 
 namespace Revity.DecaClimb
@@ -14,7 +13,7 @@ namespace Revity.DecaClimb
         // Start is called before the first frame update
         void Start()
         {
-            transform.GetComponent<Camera>().backgroundColor = BackgroundColorHandler.Instance.GetColorRandom() ;
+            transform.GetComponent<Camera>().backgroundColor = PersistantServiceLocator.Instance.DataHandler.BackgroundColor.GetColorRandom() ;
             playerLoc = player.position.y;
 
         }

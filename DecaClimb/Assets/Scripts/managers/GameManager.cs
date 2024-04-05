@@ -1,4 +1,5 @@
 using Revity.Ads;
+using Revity.DecaClimb.Persistant;
 using UnityEngine;
 
 namespace Revity.DecaClimb
@@ -72,7 +73,7 @@ namespace Revity.DecaClimb
             levelsHandle.IncreaseLevel();
             ScoreScript.SetHighScore();
             CoinsManagerScript.LevelUpCoin(levelsHandle.GetCurrentLevel() * 10);
-			PersistantSceneService.Instance.LoadGameScene();
+			PersistantServiceLocator.Instance.SceneService.LoadGameScene();
 		}
 
         public void MainMenu()
@@ -83,7 +84,7 @@ namespace Revity.DecaClimb
             Time.timeScale = 1;
             ScoreScript.ResetScore();
             CoinsManagerScript.CoinUpdate();
-            PersistantSceneService.Instance.LoadMainMenuScene();
+            PersistantServiceLocator.Instance.SceneService.LoadMainMenuScene();
         }
 
         public void RetryButton()
@@ -99,7 +100,7 @@ namespace Revity.DecaClimb
 			//levelsHandle.ResetLevel();
 			levelsHandle.isLevelUp = false;
 			levelsHandle.isRetryUsed = true;
-            PersistantSceneService.Instance.LoadGameScene();
+			PersistantServiceLocator.Instance.SceneService.LoadGameScene();
 
 		}
 	}

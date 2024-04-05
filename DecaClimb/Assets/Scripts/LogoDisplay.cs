@@ -1,8 +1,12 @@
+using Revity.DecaClimb.Persistant;
 using System.Collections;
 using UnityEngine;
 
 namespace Revity.DecaClimb
 {
+    /// <summary>
+    /// Class for displaying logo at the beginning
+    /// </summary>
     public class LogoDisplay : MonoBehaviour
     {
 		// Start is called before the first frame update
@@ -18,7 +22,7 @@ namespace Revity.DecaClimb
         IEnumerator RunLogo()
         {
             yield return new WaitForSeconds(2f);
-            PersistantSceneService.Instance.LoadMainMenuScene();
+			PersistantServiceLocator.Instance.SceneService.LoadMainMenuScene();
         }
 
     }

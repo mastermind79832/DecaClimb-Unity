@@ -1,3 +1,4 @@
+using Revity.DecaClimb.Persistant;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,9 +27,9 @@ namespace Revity.DecaClimb
             m_CheatPanel.SetActive(false);
             m_InstructionPanel.SetActive(false);
            
-            m_HighScoreText.text = PersistantDataHandler.Instance.ProgressManager.HighScore.ToString();
-            m_CheckPointText.text = PersistantDataHandler.Instance.ProgressManager.Checkpoint.ToString();
-            m_CoinText.text = PersistantDataHandler.Instance.EconomyManager.Coins.ToString();
+            m_HighScoreText.text = PersistantServiceLocator.Instance.DataHandler.HighscoreData.HighScore.ToString();
+            m_CheckPointText.text = PersistantServiceLocator.Instance.DataHandler.CheckpointData.Checkpoint.ToString();
+            m_CoinText.text = PersistantServiceLocator.Instance.DataHandler.CoinData.Coins.ToString();
 
             m_PlayButton.onClick.AddListener(MainMenuService.Instance.GameStart);
             m_UpgradeButton.onClick.AddListener(MainMenuService.Instance.OpenUpgrade);
@@ -36,7 +37,7 @@ namespace Revity.DecaClimb
 
         public void UpgradePage()
         {
-            PersistantSceneService.Instance.LoadUpgradeScene();        
+			PersistantServiceLocator.Instance.SceneService.LoadUpgradeScene();        
         }
 
         #region Cheat
@@ -56,16 +57,16 @@ namespace Revity.DecaClimb
             if (m_CoinsCheat.text != "")
             {
                 int coin = System.Convert.ToInt32(m_CoinsCheat.text);
-				PersistantDataHandler.Instance.EconomyManager.SetCoins(coin);
-                m_CoinText.text = PersistantDataHandler.Instance.EconomyManager.Coins.ToString();
+				PersistantServiceLocator.Instance.DataHandler.CoinData.SaveCoins(coin);
+                m_CoinText.text = PersistantServiceLocator.Instance.DataHandler.CoinData.Coins.ToString();
             }
 
 
             if (m_LevelCheat.text != "")
             {
                 int level = System.Convert.ToInt32(m_LevelCheat.text);
-				PersistantDataHandler.Instance.ProgressManager.SetCheckPoint(level);
-                m_CheckPointText.text = PersistantDataHandler.Instance.ProgressManager.Checkpoint.ToString();
+				PersistantServiceLocator.Instance.DataHandler.CheckpointData.SaveCheckPoint(level);
+                m_CheckPointText.text = PersistantServiceLocator.Instance.DataHandler.CheckpointData.Checkpoint.ToString();
 			}
         }
         #endregion

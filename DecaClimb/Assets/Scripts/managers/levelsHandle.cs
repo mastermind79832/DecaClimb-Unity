@@ -1,4 +1,5 @@
 using Revity.Ads;
+using Revity.DecaClimb.Persistant;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,7 @@ namespace Revity.DecaClimb
 
         public static void ResetLevel()
         {
-            currentLevel = PersistantDataHandler.Instance.ProgressManager.Checkpoint;
+            currentLevel = PersistantServiceLocator.Instance.DataHandler.CheckpointData.Checkpoint;
         }
 
         public static void IncreaseLevel()
@@ -41,15 +42,15 @@ namespace Revity.DecaClimb
 
         public static int GetCheckpoint()
         {
-            checkPointLevel = PersistantDataHandler.Instance.ProgressManager.Checkpoint;
+            checkPointLevel = PersistantServiceLocator.Instance.DataHandler.CheckpointData.Checkpoint;
             return checkPointLevel;
         }
 
         public static void SaveCheckPoint()
         {
-            // Show rewarded ads to save checkpoint
-            //PlayerPrefs.SetInt("CheckPoint", checkPointLevel);
-            PersistantDataHandler.Instance.ProgressManager.SetCheckPoint(checkPointLevel);
+			// Show rewarded ads to save checkpoint
+			//PlayerPrefs.SetInt("CheckPoint", checkPointLevel);
+			PersistantServiceLocator.Instance.DataHandler.CheckpointData.SaveCheckPoint(checkPointLevel);
 
         }
 

@@ -18,7 +18,7 @@ namespace Revity.DecaClimb
 
 
 		// Initialize everything
-		private void Awake()
+		override protected void Awake()
 		{
 			// Start game
 			// Check for tutorial
