@@ -2,7 +2,7 @@ using Revity.Ads;
 using Revity.DecaClimb.Persistant;
 using UnityEngine;
 
-namespace Revity.DecaClimb
+namespace Revity.DecaClimb.Game
 {
 
     /// <summary>

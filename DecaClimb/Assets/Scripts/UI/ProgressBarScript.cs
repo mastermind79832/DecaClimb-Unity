@@ -14,11 +14,11 @@ namespace Revity.DecaClimb
 
         public static void StartProgress()
         {
-            float totalPillar = (PillarSpwan.lastpillar / 4) - 1;
+            //float totalPillar = (PillarSpwan.lastpillar / 4) - 1;
 
             // Debug.Log(totalPillar);
 
-            delta = 970 / totalPillar;
+            //delta = 970 / totalPillar;
 
             // Debug.Log(delta);
         }

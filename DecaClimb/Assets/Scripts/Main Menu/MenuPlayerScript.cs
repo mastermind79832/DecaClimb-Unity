@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Revity.DecaClimb
+namespace Revity.DecaClimb.MainMenu
 {
     public class MenuPlayerScript : MonoBehaviour
     {

@@ -15,28 +15,37 @@ namespace Revity.DecaClimb
         public bool first = false;
         public bool last = false;
 
+        public int[] groundData;
+        private Pillar pillar;
 
         // Start is called before the first frame update
         void Start()
         {
+            pillar = GetComponent<Pillar>();           
+            groundData = new int[10];
+
             GroundSpwan();
             GroundDestroy();
             SetDangerZone();
+
+			pillar.SetGround(groundData);
         }
 
         private void GroundSpwan()
         {
             for (int i = 0; i < 10; i++)
             {
-                GameObject grounds = Instantiate(ground);
-                grounds.transform.position = transform.position;
-                grounds.transform.SetParent(transform);
-                grounds.transform.rotation = Quaternion.Euler(90, i * 36, 0);
+                //GameObject grounds = Instantiate(ground);
+                //grounds.transform.position = transform.position;
+                //grounds.transform.SetParent(transform);
+                //grounds.transform.rotation = Quaternion.Euler(90, i * 36, 0);
 
                 if (last)
                 {
-                    grounds.GetComponent<MeshRenderer>().material = FinishMat;
-                    grounds.tag = "Finish";
+                    //grounds.GetComponent<MeshRenderer>().material = FinishMat;
+                    //grounds.tag = "Finish";
+                    groundData[i] = (int)GroundType.Goal;
+
                 }
             }
         }
@@ -49,13 +58,14 @@ namespace Revity.DecaClimb
             for (int i = 0; i < amountToDestroy; i++)
             {
 
-                int index = Random.Range(0, transform.childCount);
+                int index = Random.Range(0, 9);
 
                 if (first)
-                    index = Random.Range(2, transform.childCount);
+                    index = Random.Range(2, 9);
 
+                groundData[index] = 3;
 
-                Destroy(transform.GetChild(index).gameObject);
+               // Destroy(transform.GetChild(index).gameObject);
             }
         }
 
@@ -68,22 +78,28 @@ namespace Revity.DecaClimb
 
                 for (int i = 0; i < dangerZone; i++)
                 {
-                    int index = Random.Range(0, transform.childCount);
+                    int index = Random.Range(0, 9);
 
                     if (first)
-                        index = Random.Range(2, transform.childCount);
+                        index = Random.Range(2, 9);
 
-                    GameObject dangerGround = transform.GetChild(index).gameObject;
-                    dangerGround.tag = "Danger";
-
-                    MeshRenderer danger = dangerGround.GetComponent<MeshRenderer>();
-
-                    if (danger.material == redMat)
+                    if (groundData[index] == 3)
+                    {
+                        i--;
                         continue;
-                    else
-                        danger.material = redMat;
+                    }
+                    groundData[index] = (int)GroundType.Danger;
+				//GameObject dangerGround = transform.GetChild(index).gameObject;
+				//dangerGround.tag = "Danger";
 
-                }
+				//MeshRenderer danger = dangerGround.GetComponent<MeshRenderer>();
+
+				//if (danger.material == redMat)
+				//    continue;
+				//else
+				//    danger.material = redMat;
+
+			}
             }
         }
 

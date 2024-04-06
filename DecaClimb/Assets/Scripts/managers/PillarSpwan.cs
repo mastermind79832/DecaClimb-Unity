@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-namespace Revity.DecaClimb
+namespace Revity.DecaClimb.Game
 {
     public class PillarSpwan : MonoBehaviour
     {
@@ -46,7 +46,7 @@ namespace Revity.DecaClimb
 
             for (int i = 0; i < pillarAmount; i++)
             {
-                pillars = Instantiate(pillar);
+                pillars = GameSceneService.Instance.FactoryService.GetPillar().gameObject;
                 pillars.transform.position = new Vector3(transform.position.x, i * 4, transform.position.z);
                 pillars.transform.parent = transform;
                 SpwanCoinSpwaner();
@@ -59,7 +59,7 @@ namespace Revity.DecaClimb
 
             }
 
-            pillars = Instantiate(pillar);
+            pillars = GameSceneService.Instance.FactoryService.GetPillar().gameObject;
             lastpillar = pillarAmount * 4;
             ProgressBarScript.StartProgress();
             pillars.transform.position = new Vector3(transform.position.x, lastpillar, transform.position.z);
@@ -73,7 +73,7 @@ namespace Revity.DecaClimb
             int isCoin = Random.Range(0, 2);
 
             if (isCoin == 1)
-            {
+            { 
                 Instantiate(coinSpawnner, pillars.transform.position, Quaternion.identity, transform);
 
             }

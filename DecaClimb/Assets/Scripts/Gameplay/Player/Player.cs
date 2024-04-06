@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Revity.DecaClimb
+namespace Revity.DecaClimb.Game
 {
     public class Player : MonoBehaviour
     {
@@ -97,21 +97,23 @@ namespace Revity.DecaClimb
 
         private void OnCollisionEnter(Collision other)
         {
+            Ground ground = other.gameObject.GetComponent<Ground>();
+            if (ground == null) return;
 
-            if (other.gameObject.tag == "Ground")
+            if (ground.GroundType == GroundType.Normal)
             {
                 rb.velocity = Vector3.up * jumpvelocity;
                 FloorPassed();
 
             }
-            else if (other.gameObject.tag == "Danger")
+            else if (ground.GroundType == GroundType.Danger)
             {
                 isDead = true;
                 //Debug.Log("DEad");
                 gm.GameOver();
 
             }
-            else if (other.gameObject.tag == "Finish" && PillarSpwan.lastpillar < transform.position.y)
+            else if (ground.GroundType == GroundType.Goal && PillarSpwan.lastpillar < transform.position.y)
             {
                 gm.GameFinish();
             }
@@ -121,7 +123,7 @@ namespace Revity.DecaClimb
         private void OnTriggerEnter(Collider other)
         {
 
-            if (other.gameObject.tag == "Coin")
+            if (other.gameObject.TryGetComponent(out Coin coin))
             {
                 // coin amount update
 
