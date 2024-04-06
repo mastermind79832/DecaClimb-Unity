@@ -4,7 +4,7 @@ using UnityEngine;
 using Revity.Core;
 using Revity.DecaClimb.Persistant;
 
-namespace Revity.DecaClimb
+namespace Revity.DecaClimb.MainMenu
 {
 	/// <summary>
 	/// Service that handles the Main menu.
@@ -15,8 +15,11 @@ namespace Revity.DecaClimb
 		{
 			base.Awake();
 			StartCoroutine(DisplayBannerWithDelay());
+		}
 
-			PersistantServiceLocator.Instance.Camera.backgroundColor = PersistantServiceLocator.Instance.DataHandler.BackgroundColor.GetColorRandom();
+		private void Start()
+		{
+			PersistantServiceLocator.Instance.ChangeCameraBg();			
 		}
 
 		private IEnumerator DisplayBannerWithDelay()

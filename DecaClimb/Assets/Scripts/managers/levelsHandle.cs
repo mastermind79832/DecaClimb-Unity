@@ -50,7 +50,7 @@ namespace Revity.DecaClimb
         {
 			// Show rewarded ads to save checkpoint
 			//PlayerPrefs.SetInt("CheckPoint", checkPointLevel);
-			PersistantServiceLocator.Instance.DataHandler.CheckpointData.SaveCheckPoint(checkPointLevel);
+			PersistantServiceLocator.Instance.DataHandler.CheckpointData.SaveCheckpoint(checkPointLevel);
 
         }
 

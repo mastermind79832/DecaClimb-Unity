@@ -11,6 +11,8 @@ namespace Revity.DecaClimb.Persistant
     /// </summary>
     public class SceneService : MonoBehaviour
     {
+		[SerializeField] private bool m_IsTesting;
+
 		[Header("Data")]
 		[SerializeField] private SceneDataSO m_SceneDataSO;
 		private SceneAsset m_CurrentScene;
@@ -24,7 +26,12 @@ namespace Revity.DecaClimb.Persistant
 
 		private void Awake()
 		{
-			SceneManager.LoadScene(m_SceneDataSO.LogoIntroScene.name, LoadSceneMode.Additive);
+			if (m_IsTesting)
+			{
+				m_CurrentScene = m_SceneDataSO.GameScene;
+				return;
+			}
+            SceneManager.LoadScene(m_SceneDataSO.LogoIntroScene.name, LoadSceneMode.Additive);
 			m_CurrentScene = m_SceneDataSO.LogoIntroScene;
 		}
 

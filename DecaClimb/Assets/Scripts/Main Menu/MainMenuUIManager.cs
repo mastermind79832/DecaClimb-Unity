@@ -2,7 +2,7 @@ using Revity.DecaClimb.Persistant;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Revity.DecaClimb
+namespace Revity.DecaClimb.MainMenu
 {
     /// <summary>
     /// Manages the UI of mainmenu
@@ -27,15 +27,19 @@ namespace Revity.DecaClimb
             m_CheatPanel.SetActive(false);
             m_InstructionPanel.SetActive(false);
            
+        }
+
+		private void Start()
+		{
             m_HighScoreText.text = PersistantServiceLocator.Instance.DataHandler.HighscoreData.HighScore.ToString();
             m_CheckPointText.text = PersistantServiceLocator.Instance.DataHandler.CheckpointData.Checkpoint.ToString();
             m_CoinText.text = PersistantServiceLocator.Instance.DataHandler.CoinData.Coins.ToString();
 
             m_PlayButton.onClick.AddListener(MainMenuService.Instance.GameStart);
-            m_UpgradeButton.onClick.AddListener(MainMenuService.Instance.OpenUpgrade);
-        }
+            m_UpgradeButton.onClick.AddListener(MainMenuService.Instance.OpenUpgrade);			
+		}
 
-        public void UpgradePage()
+		public void UpgradePage()
         {
 			PersistantServiceLocator.Instance.SceneService.LoadUpgradeScene();        
         }
@@ -65,7 +69,7 @@ namespace Revity.DecaClimb
             if (m_LevelCheat.text != "")
             {
                 int level = System.Convert.ToInt32(m_LevelCheat.text);
-				PersistantServiceLocator.Instance.DataHandler.CheckpointData.SaveCheckPoint(level);
+				PersistantServiceLocator.Instance.DataHandler.CheckpointData.SaveCheckpoint(level);
                 m_CheckPointText.text = PersistantServiceLocator.Instance.DataHandler.CheckpointData.Checkpoint.ToString();
 			}
         }

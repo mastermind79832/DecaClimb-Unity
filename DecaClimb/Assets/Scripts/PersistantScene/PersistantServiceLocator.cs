@@ -30,5 +30,10 @@ namespace Revity.DecaClimb.Persistant
 		{
 			m_DataHandler = new DataHandler(m_ColorSO);
 		}
+
+		public void ChangeCameraBg()
+		{
+			Camera.backgroundColor = DataHandler.BackgroundColor.GetColorRandom();
+		}
 	}
 }
