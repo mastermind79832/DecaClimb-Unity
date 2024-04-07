@@ -1,5 +1,6 @@
 using Revity.Ads;
 using Revity.DecaClimb.Persistant;
+using System;
 using UnityEngine;
 
 namespace Revity.DecaClimb.Game
@@ -28,10 +29,10 @@ namespace Revity.DecaClimb.Game
         // Update is called once per frame
         void Update()
         {
-            PauseMenu();
+            EscapeInput();
         }
 
-        public void PauseMenu()
+        public void EscapeInput()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -73,7 +74,8 @@ namespace Revity.DecaClimb.Game
             levelsHandle.IncreaseLevel();
             ScoreScript.SetHighScore();
             CoinsManagerScript.LevelUpCoin(levelsHandle.GetCurrentLevel() * 10);
-			PersistantServiceLocator.Instance.SceneService.LoadGameScene();
+            GameSceneService.Instance.RefreshLevel();
+			//PersistantServiceLocator.Instance.SceneService.LoadGameScene();
 		}
 
         public void MainMenu()
@@ -100,7 +102,8 @@ namespace Revity.DecaClimb.Game
 			//levelsHandle.ResetLevel();
 			levelsHandle.isLevelUp = false;
 			levelsHandle.isRetryUsed = true;
-			PersistantServiceLocator.Instance.SceneService.LoadGameScene();
+			GameSceneService.Instance.RefreshLevel();
+			//PersistantServiceLocator.Instance.SceneService.LoadGameScene();
 
 		}
 	}

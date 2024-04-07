@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8106244431842831433}
   - component: {fileID: 8516423532659703391}
+  - component: {fileID: 6003515165326234331}
   m_Layer: 0
   m_Name: CoinPivot
   m_TagString: Untagged
@@ -46,6 +47,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a7a75d3483f0eb4196e071ee03d5fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &6003515165326234331
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197161645686379928}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7101106, y: 0.6943853, z: 0.12265587}
+  m_Center: {x: -0.0018824041, y: 1.7005569, z: -4.9997787}
 --- !u!1 &3878037261890102272
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +209,6 @@ GameObject:
   - component: {fileID: 3612035561761116967}
   - component: {fileID: 8383791468213875781}
   - component: {fileID: 8933333979999463199}
-  - component: {fileID: 3747256164846146553}
   m_Layer: 0
   m_Name: Coin (1)
   m_TagString: Coin
@@ -282,27 +303,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!65 &3747256164846146553
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7737827064539834160}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 13.871878, y: 13.87188, z: 1.1000025}
-  m_Center: {x: 0.00000023841858, y: 0.00000166893, z: -0.0000011324883}
 --- !u!1 &8889436504925727884
 GameObject:
   m_ObjectHideFlags: 0

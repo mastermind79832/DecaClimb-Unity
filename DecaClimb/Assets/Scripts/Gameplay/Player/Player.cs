@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,10 +26,13 @@ namespace Revity.DecaClimb.Game
 
         [SerializeField] private GameObject progressPos;
 
+        private Vector3 m_staringPos;
+
         // Start is called before the first frame update
         void Start()
         {
             multiplierTime = maxMultTime;
+            m_staringPos = transform.position;
         }
 
         // Update is called once per frame
@@ -83,7 +87,6 @@ namespace Revity.DecaClimb.Game
                 multiplierDisp.GetComponent<TextMesh>().text = "x" + multiplier.ToString();
                 multiplierDisp.SetActive(true);
             }
-
         }
 
         private void OutofBound()
@@ -130,12 +133,20 @@ namespace Revity.DecaClimb.Game
                 CoinsManagerScript.IncreaseCoin(1);
 
                 // destroy Coin
-
-                Destroy(other.gameObject);
+                other.gameObject.SetActive(false);
+                //Destroy(other.gameObject);
                 //Debug.Log("coin");
 
             }
         }
 
-    }
+		public void ResetPosition()
+		{
+            GetComponent<Collider>().enabled = false;
+			transform.GetChild(0).GetComponent<TrailRenderer>().enabled = false;
+            transform.position = m_staringPos;
+			transform.GetChild(0).GetComponent<TrailRenderer>().enabled = true;
+            GetComponent<Collider>().enabled = true;
+		}
+	}
 }

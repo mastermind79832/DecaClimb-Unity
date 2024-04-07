@@ -1616,6 +1616,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GameManager: {fileID: 1161705229}
   m_FactorDataSO: {fileID: 11400000, guid: f6aaae404dbe0bd42b85bb892f92dd70, type: 2}
+  m_PillarSpawn: {fileID: 1874428544}
+  m_Player: {fileID: 1970746611}
 --- !u!4 &1161705227
 Transform:
   m_ObjectHideFlags: 0
@@ -2521,7 +2523,7 @@ GameObject:
   - component: {fileID: 1874428544}
   - component: {fileID: 1874428546}
   m_Layer: 0
-  m_Name: spwaner
+  m_Name: Spwaner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2655,6 +2657,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7378768352178671949}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1970746611 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7378768350973566225, guid: 66787db913603fc469a31b4e58d99bfd,
+    type: 3}
+  m_PrefabInstance: {fileID: 7378768352178671949}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452490543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1db5f7870f8be46bd3e16e51913cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2088869788
 GameObject:
   m_ObjectHideFlags: 0

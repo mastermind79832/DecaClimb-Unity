@@ -18,6 +18,12 @@ namespace Revity.DecaClimb.Game
 		private FactoryService m_FactoryService;
 		public FactoryService FactoryService {  get { return m_FactoryService; } }
 
+		[SerializeField] private PillarSpwan m_PillarSpawn;
+		public PillarSpwan PillarSpawn { get {  return m_PillarSpawn; } }
+
+		[SerializeField] private Player m_Player;
+		public Player Player { get { return m_Player; } }
+
 
 		// Initialize everything
 		override protected void Awake()
@@ -27,10 +33,21 @@ namespace Revity.DecaClimb.Game
 			// Start game
 			// Check for tutorial
 		}
-
+		private void Start()
+		{
+			RefreshLevel();
+		}
 		private void CreateService()
 		{
 			m_FactoryService = new(m_FactorDataSO);
+		}
+
+		public void RefreshLevel()
+		{
+			FactoryService.Restart();
+			PillarSpawn.transform.eulerAngles = Vector3.zero;
+			PillarSpawn.Initialize();
+			Player.ResetPosition();
 		}
 
 		// Reset everything

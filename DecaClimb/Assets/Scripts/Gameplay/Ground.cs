@@ -14,6 +14,7 @@ namespace Revity.DecaClimb
 
         public void SetGroundType(GroundType type)
         {
+            m_Type = type;
             Material Mat = GameSceneService.Instance.FactoryService.GetGround(type);
             m_Mesh.sharedMaterial = Mat;
         }

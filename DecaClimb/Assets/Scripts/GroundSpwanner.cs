@@ -20,21 +20,29 @@ namespace Revity.DecaClimb
 
         // Start is called before the first frame update
         void Start()
-        {
-            pillar = GetComponent<Pillar>();           
-            groundData = new int[10];
+		{
+			//Initialize();
+		}
 
-            GroundSpwan();
-            GroundDestroy();
-            SetDangerZone();
+		public void Initialize(bool first, bool last)
+		{
+            this.first = first;
+            this.last = last;
+			pillar = GetComponent<Pillar>();
+			groundData = new int[10];
+
+			GroundSpwan();
+			GroundDestroy();
+			SetDangerZone();
 
 			pillar.SetGround(groundData);
-        }
+		}
 
-        private void GroundSpwan()
+		private void GroundSpwan()
         {
             for (int i = 0; i < 10; i++)
             {
+                groundData[i] = 0;
                 //GameObject grounds = Instantiate(ground);
                 //grounds.transform.position = transform.position;
                 //grounds.transform.SetParent(transform);
