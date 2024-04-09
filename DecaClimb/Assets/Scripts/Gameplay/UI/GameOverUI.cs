@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Revity.DecaClimb
@@ -17,10 +19,10 @@ namespace Revity.DecaClimb
         [SerializeField] private Button m_NoButton;
         [SerializeField] private TextMeshProUGUI m_HighscoreText;
 
-        public void Initialize()
+        public void Initialize(UnityAction onYesClick, UnityAction onBackClick)
         {
-            m_YesButton.onClick.AddListener(null);
-            m_NoButton.onClick.AddListener(null);
+            m_YesButton.onClick.AddListener(onYesClick);
+            m_NoButton.onClick.AddListener(onBackClick);
         }
 
         /// <summary>
