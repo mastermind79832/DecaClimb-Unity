@@ -1,3 +1,4 @@
+using Revity.DecaClimb.Persistant;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,32 +9,28 @@ namespace Revity.DecaClimb
     public class CoinManager
     {
 
-        private int coin;
+        private int m_CurrentCoin;
+        public int CurrentCoin { get { return m_CurrentCoin; } }  
 
         public int GetCoin()
         {
-            coin = PlayerPrefs.GetInt("Coins");
-            return coin;
-        }
-
-        public int GetCurrentCoin()
-        {
-            return coin;
+            m_CurrentCoin = PersistantServiceLocator.Instance.DataHandler.CoinData.Coins;
+            return m_CurrentCoin;
         }
 
         public void LevelUpCoin(int amount)
         {
-            coin += amount;
+            m_CurrentCoin += amount;
         }
 
         public void IncreaseCoin(int amount)
         {
-            coin += amount;
+            m_CurrentCoin += amount;
         }
 
-        public void CoinUpdate()
+        public void SaveCoin()
         {
-            PlayerPrefs.SetInt("Coins", coin);
+			PersistantServiceLocator.Instance.DataHandler.CoinData.SaveCoins(CurrentCoin);
         }
     }
 }
