@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Revity.Core;
-using System;
 using Revity.DecaClimb.Game.UI;
 
 namespace Revity.DecaClimb.Game
