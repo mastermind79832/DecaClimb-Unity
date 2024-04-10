@@ -6,6 +6,6 @@ namespace Revity.DecaClimb.Game.UI
 {
     public class ProgressBarUI : MonoBehaviour
     {
-       
+        
     }
 }

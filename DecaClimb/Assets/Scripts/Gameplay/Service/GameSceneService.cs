@@ -1,6 +1,7 @@
 using UnityEngine;
 using Revity.Core;
 using Revity.DecaClimb.Game.UI;
+using System;
 
 namespace Revity.DecaClimb.Game
 {
@@ -42,15 +43,12 @@ namespace Revity.DecaClimb.Game
 		override protected void Awake()
 		{
 			base.Awake();
-			CreateService();
+			InitializeService();
+			SetEvents();
 			// Start game
 			// Check for tutorial
 		}
-		private void Start()
-		{
-			RefreshLevel();
-		}
-		private void CreateService()
+		private void InitializeService()
 		{
 			m_FactoryService = new(m_FactorDataSO);
 			m_LevelManager = new();
@@ -58,9 +56,26 @@ namespace Revity.DecaClimb.Game
 			m_CoinManager = new();
 
 			GameManager.Initialize();
-			UIManager.OnGameStart();
+			UIManager.Initialize();
 		}
 
+		private void SetEvents()
+		{
+			// UI update
+			LevelManager.OnLevelChanged += UIManager.LevelUI.UpdateText;
+			ScoreManager.OnScoreChanged += UIManager.ScoreUI.UpdateText;
+			CoinManager.OnCoinChange += UIManager.CoinUI.UpdateText;
+		}
+
+		private void Start()
+		{
+			StartGame();
+		}
+
+		private void StartGame()
+		{
+			RefreshLevel();
+		}
 		private void Update()
 		{
 			ScoreManager.Update(Time.deltaTime);
@@ -72,7 +87,7 @@ namespace Revity.DecaClimb.Game
 			PillarSpawn.transform.eulerAngles = Vector3.zero;
 			PillarSpawn.Initialize();
 			Player.ResetPosition();
-			UIManager.OnGameStart();
+			UIManager.StartGame();
 		}
 
 		// Reset everything

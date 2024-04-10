@@ -11,21 +11,21 @@ namespace Revity.DecaClimb
     /// </summary>
     public class GameOverUI : MonoBehaviour
     {
-        [SerializeField] private GameObject GameOverPanel;
+        [SerializeField] private GameObject m_GameOverPanel;
         [SerializeField] private Button m_YesButton;
         [SerializeField] private Image m_VideoButton;
         [SerializeField] private Button m_NoButton;
         [SerializeField] private TextMeshProUGUI m_HighscoreText;
 
-        public bool IsActive { get { return GameOverPanel.activeSelf; } }
+        public bool IsActive { get { return m_GameOverPanel.activeSelf; } }
 
-        public void OnGameStart()
+        public void DisableUI()
         {
-            GameOverPanel.SetActive(false);
+            m_GameOverPanel.SetActive(false);
         }
 
 		/// <summary>
-		/// Initilaze the Game UI.
+		/// Initilaze the Game over UI.
 		/// </summary>
 		/// <param name="onYesClick">for Yes button</param>
 		/// <param name="onBackClick">for No button</param>
@@ -36,19 +36,19 @@ namespace Revity.DecaClimb
         }
 
         /// <summary>
-        /// Initialize Game over UI
+        /// Diplay Game over UI
         /// </summary>
         /// <param name="isRetryAvailable">Based on this retry button is interactable</param>
         /// <param name="highscore">To Displays highscore at the end</param>
         public void ShowGameOverUI(bool isRetryAvailable, int highscore)
         {
-            GameOverPanel.SetActive(true);
+            m_GameOverPanel.SetActive(true);
             m_YesButton.interactable = isRetryAvailable;
             m_VideoButton.gameObject.SetActive(isRetryAvailable);
            
             // Set Highscore
             m_HighscoreText.text = $"Highscore: {highscore}";
-            GameOverPanel.SetActive(isRetryAvailable);
+            m_GameOverPanel.SetActive(isRetryAvailable);
         }
     }
 }

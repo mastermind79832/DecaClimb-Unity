@@ -1,4 +1,5 @@
 using Revity.Ads;
+using Revity.DecaClimb.Game.UI;
 using Revity.DecaClimb.Persistant;
 using System;
 using UnityEngine;
@@ -15,33 +16,28 @@ namespace Revity.DecaClimb.Game
 
         // Reference
         private GameOverUI m_GameOverUI;
+        private PauseUI m_PauseUI;
         
         private bool m_IsRetryPossible;
 
-        public GameObject PausePanel;
-        public GameObject pillar;
-
-		void Start()
-        {
-            m_IsRetryPossible = true;
-            // Application.targetFrameRate = 60;
-            //gameOverPanel.SetActive(false);
-            PausePanel.SetActive(false);
-        }
+        public PillarController m_PillarController;
 
         public void Initialize()
         {
+            m_IsRetryPossible = true;
             m_GameOverUI = GameSceneService.Instance.UIManager.GameOverUI;
-            m_GameOverUI.Initialize(RetryButton,MainMenu);
-        }
+            m_PauseUI = GameSceneService.Instance.UIManager.PauseUI;
 
+            m_GameOverUI.Initialize(RetryButton,MainMenu);
+            m_PauseUI.Initialize(GameOver,ContinueGame);
+        }
         // Update is called once per frame
         void Update()
         {
             EscapeInput();
         }
 
-        public void EscapeInput()
+        private void EscapeInput()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -52,14 +48,14 @@ namespace Revity.DecaClimb.Game
                     return;
                 }
 
-                if (PausePanel.activeSelf)
+                if (m_PauseUI.IsActive)
                 {
                     ContinueGame();
                     return;
                 }
                 Time.timeScale = 0;
-                pillar.GetComponent<PillarController>().enabled = false;
-                PausePanel.SetActive(true);
+                m_PillarController.enabled = false;
+                m_PauseUI.ShowPauseUI();
             }
         }
 
@@ -68,8 +64,8 @@ namespace Revity.DecaClimb.Game
         /// </summary>
         public void ContinueGame()
         {
-            pillar.GetComponent<PillarController>().enabled = true;
-            PausePanel.SetActive(false);
+            m_PillarController.enabled = true;
+            m_PauseUI.DisableUI();
             Time.timeScale = 1;
         }
 
@@ -83,7 +79,7 @@ namespace Revity.DecaClimb.Game
             // gameOverPanel.SetActive(true);
             // set highscore
             m_GameOverUI.ShowGameOverUI(m_IsRetryPossible, 0);
-            pillar.GetComponent<PillarController>().enabled = false;
+            m_PillarController.enabled = false;
         }
 
         /// <summary>
@@ -93,7 +89,7 @@ namespace Revity.DecaClimb.Game
         {
             GameSceneService.Instance.LevelManager.IncreaseLevel();
 			GameSceneService.Instance.ScoreManager.SetHighscore();
-			GameSceneService.Instance.CoinManager.LevelUpCoin(GameSceneService.Instance.LevelManager.CurrentLevel * 10);
+			GameSceneService.Instance.CoinManager.IncreaseCoin(GameSceneService.Instance.LevelManager.CurrentLevel * 10);
             GameSceneService.Instance.RefreshLevel();
 			//PersistantServiceLocator.Instance.SceneService.LoadGameScene();
 		}

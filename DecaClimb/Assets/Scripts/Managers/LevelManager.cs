@@ -1,5 +1,6 @@
 using Revity.Ads;
 using Revity.DecaClimb.Persistant;
+using System;
 
 namespace Revity.DecaClimb.Game
 {
@@ -11,6 +12,8 @@ namespace Revity.DecaClimb.Game
 
         private int m_Checkpoint;
         public int Checkpoint { get { return m_Checkpoint; } }
+
+		public event Action<int> OnLevelChanged;
 
         public LevelManager() 
         {
@@ -31,6 +34,7 @@ namespace Revity.DecaClimb.Game
         public void IncreaseLevel()
 		{
 			m_CurrentLevel += 1;
+			OnLevelChanged?.Invoke(m_CurrentLevel);
 
 			SetCheckPoint();
 			ShowAds();

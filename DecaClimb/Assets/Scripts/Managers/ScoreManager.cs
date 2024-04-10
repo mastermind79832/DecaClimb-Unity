@@ -1,5 +1,6 @@
 using Revity.DecaClimb.Persistant;
 using Revity.Core;
+using System;
 
 namespace Revity.DecaClimb.Game
 {
@@ -15,6 +16,8 @@ namespace Revity.DecaClimb.Game
         private readonly Timer m_Timer;
 
         public float m_MultiplierTime = 2;
+
+        public event Action<int> OnScoreChanged;
 
         public ScoreManager() 
         {
@@ -53,6 +56,7 @@ namespace Revity.DecaClimb.Game
                 levelScore = 1;
 
             m_Score += levelScore * (++m_Multiplier);
+            OnScoreChanged.Invoke(m_Score);
             m_Timer.Restart();
         }
 

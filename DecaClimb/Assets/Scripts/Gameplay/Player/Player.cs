@@ -100,6 +100,8 @@ namespace Revity.DecaClimb.Game
             Ground ground = other.gameObject.GetComponent<Ground>();
             if (ground == null) return;
 
+            if (!IsPlayerAboveGround(ground)) return;
+
             if (ground.GroundType == GroundType.Normal)
             {
                 rb.velocity = Vector3.up * jumpvelocity;
@@ -113,21 +115,22 @@ namespace Revity.DecaClimb.Game
                 gm.GameOver();
 
             }
-            else if (ground.GroundType == GroundType.Goal && PillarSpwan.lastpillar < transform.position.y)
+            else if (ground.GroundType == GroundType.Goal)
             {
                 gm.GameFinish();
             }
 
         }
+        private bool IsPlayerAboveGround(Ground ground) => ground.transform.position.y < transform.position.y;
 
-        private void OnTriggerEnter(Collider other)
+		private void OnTriggerEnter(Collider other)
         {
 
             if (other.gameObject.TryGetComponent(out Coin coin))
             {
                 // coin amount update
 
-                GameSceneService.Instance.CoinManager.IncreaseCoin(1);
+                GameSceneService.Instance.CoinManager.IncreaseCoin(coin.Valve);
 
                 // destroy Coin
                 other.gameObject.SetActive(false);
@@ -142,8 +145,14 @@ namespace Revity.DecaClimb.Game
             GetComponent<Collider>().enabled = false;
 			transform.GetChild(0).GetComponent<TrailRenderer>().enabled = false;
             transform.position = m_staringPos;
-			transform.GetChild(0).GetComponent<TrailRenderer>().enabled = true;
+			Invoke(nameof(StartTrail), 1f);
             GetComponent<Collider>().enabled = true;
 		}
+
+        private void StartTrail()
+        {
+			transform.GetChild(0).GetComponent<TrailRenderer>().enabled = true;
+
+        }
 	}
 }
