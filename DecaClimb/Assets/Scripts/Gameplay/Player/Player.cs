@@ -69,7 +69,7 @@ namespace Revity.DecaClimb.Game
             if (transform.position.y > pos)
             {
                 SetMultiplier();
-                ScoreScript.IncreaseScore(multiplier);
+                ScoreManager.IncreaseScore(multiplier);
                 pos = pos + 4;
                 progressPos.GetComponent<ProgressBarScript>().progressionBarUpdate(pos);
                 // Debug.Log(ScoreScript.GetScore());
@@ -130,7 +130,7 @@ namespace Revity.DecaClimb.Game
             {
                 // coin amount update
 
-                CoinsManagerScript.IncreaseCoin(1);
+                CoinManager.IncreaseCoin(1);
 
                 // destroy Coin
                 other.gameObject.SetActive(false);

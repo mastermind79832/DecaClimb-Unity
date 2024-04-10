@@ -9,9 +9,10 @@ namespace Revity.DecaClimb.Game.UI
         [SerializeField] private GameOverUI m_GameOverUI;
         public GameOverUI GameOverUI { get { return m_GameOverUI; } }
 
-        public void OnGameOver(bool isRetryPossible, int highScore)
+        public void OnGameStart()
         {
-            m_GameOverUI.ShowGameOverUI(isRetryPossible, highScore);
+            GameOverUI.OnGameStart();
         }
+
     }
 }

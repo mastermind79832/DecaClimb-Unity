@@ -5,33 +5,33 @@ using UnityEngine;
 
 namespace Revity.DecaClimb
 {
-    public static class CoinsManagerScript
+    public class CoinManager
     {
 
-        private static int coin;
+        private int coin;
 
-        public static int GetCoin()
+        public int GetCoin()
         {
             coin = PlayerPrefs.GetInt("Coins");
             return coin;
         }
 
-        public static int GetCurrentCoin()
+        public int GetCurrentCoin()
         {
             return coin;
         }
 
-        public static void LevelUpCoin(int amount)
+        public void LevelUpCoin(int amount)
         {
             coin += amount;
         }
 
-        public static void IncreaseCoin(int amount)
+        public void IncreaseCoin(int amount)
         {
             coin += amount;
         }
 
-        public static void CoinUpdate()
+        public void CoinUpdate()
         {
             PlayerPrefs.SetInt("Coins", coin);
         }

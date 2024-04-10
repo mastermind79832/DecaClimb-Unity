@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 namespace Revity.DecaClimb
 {
@@ -19,7 +20,19 @@ namespace Revity.DecaClimb
         [SerializeField] private Button m_NoButton;
         [SerializeField] private TextMeshProUGUI m_HighscoreText;
 
-        public void Initialize(UnityAction onYesClick, UnityAction onBackClick)
+        public bool IsActive { get { return GameOverPanel.activeSelf; } }
+
+        public void OnGameStart()
+        {
+            GameOverPanel.SetActive(false);
+        }
+
+		/// <summary>
+		/// Initilaze the Game UI.
+		/// </summary>
+		/// <param name="onYesClick">for Yes button</param>
+		/// <param name="onBackClick">for No button</param>
+		public void Initialize(UnityAction onYesClick, UnityAction onBackClick)
         {
             m_YesButton.onClick.AddListener(onYesClick);
             m_NoButton.onClick.AddListener(onBackClick);
@@ -32,10 +45,11 @@ namespace Revity.DecaClimb
         /// <param name="highscore">To Displays highscore at the end</param>
         public void ShowGameOverUI(bool isRetryAvailable, int highscore)
         {
+            GameOverPanel.SetActive(true);
             m_YesButton.interactable = isRetryAvailable;
             m_VideoButton.gameObject.SetActive(isRetryAvailable);
+           
             // Set Highscore
-
             m_HighscoreText.text = $"Highscore: {highscore}";
             GameOverPanel.SetActive(isRetryAvailable);
         }

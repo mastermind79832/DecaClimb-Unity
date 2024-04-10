@@ -55,6 +55,7 @@ namespace Revity.DecaClimb.Game
 			PillarSpawn.transform.eulerAngles = Vector3.zero;
 			PillarSpawn.Initialize();
 			Player.ResetPosition();
+			UIManager.OnGameStart();
 		}
 
 		// Reset everything

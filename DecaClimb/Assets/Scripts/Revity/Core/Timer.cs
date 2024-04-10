@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Revity.DecaClimb.Core
+namespace Revity.Core
 {
     /// <summary>
     /// Script that handles Timed events
     /// </summary>
-    public class LoopedTimer
+    public class Timer
     {
         private float m_CurrentTime;
         private readonly float m_TimePeriod;
@@ -25,15 +25,23 @@ namespace Revity.DecaClimb.Core
         /// <param name="timePeriod">Max timer for timer</param>
         /// <param name="onTimerEnd">Called when timer ends</param>
         /// <param name="onTimerTick">Called every timer update</param>
-        public LoopedTimer(float timePeriod, Action onTimerEnd, Action<float> onTimerTick = null)
+        public Timer(float timePeriod, Action onTimerEnd, Action<float> onTimerTick = null)
 		{
 			m_TimePeriod = timePeriod;
 			m_OnTimerEnd = onTimerEnd;
 			m_OnTimerTick = onTimerTick;
 
 			ResetCurrentTime();
-			IsPaused = false;
+			IsPaused = true;
 		}
+
+        public void Start() => IsPaused = false;
+
+        public void Restart()
+        {
+            ResetCurrentTime();
+            Start();
+        }
 
 		private void ResetCurrentTime()
 		{
@@ -54,7 +62,6 @@ namespace Revity.DecaClimb.Core
             if (m_CurrentTime >= m_TimePeriod)
             {
                 m_OnTimerEnd();
-                ResetCurrentTime();
             }
         }
     }

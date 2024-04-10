@@ -26,9 +26,9 @@ namespace Revity.DecaClimb
         private void Start()
         {
             levelUpText.SetActive(false);
-            currentScore = ScoreScript.GetScore();
+            currentScore = ScoreManager.GetScore();
             scoreText.text = currentScore.ToString();
-            int level = levelsHandle.GetCurrentLevel();
+            int level = LevelManager.GetCurrentLevel();
             levelText.text = level.ToString();
 
             LevelUp(level);
@@ -38,7 +38,7 @@ namespace Revity.DecaClimb
 
         private void RetryEnable()
         {
-            if (levelsHandle.isRetryUsed)
+            if (LevelManager.isRetryUsed)
             {
                 retry.interactable = false;
                 GameObject videoImage = retry.transform.GetChild(0).gameObject;
@@ -58,7 +58,7 @@ namespace Revity.DecaClimb
                 levelUpText.GetComponent<Text>().text = "LEVELUP";
             }
 
-            if (levelsHandle.isLevelUp)
+            if (LevelManager.isLevelUp)
             {
                 StartCoroutine(ShowLevelUp());
 
@@ -74,16 +74,16 @@ namespace Revity.DecaClimb
 
         void FixedUpdate()
         {
-            if (ScoreScript.GetScore() > currentScore)
+            if (ScoreManager.GetScore() > currentScore)
             {
-                int diff = ScoreScript.GetScore() - currentScore;
+                int diff = ScoreManager.GetScore() - currentScore;
                 StartCoroutine(ScoreIncrease(diff));
-                scoreText.text = ScoreScript.GetScore().ToString();
+                scoreText.text = ScoreManager.GetScore().ToString();
                 currentScore += diff;
             }
-            hisghScoreText.text = "Highscore :" + ScoreScript.GetHighscore().ToString();
+            hisghScoreText.text = "Highscore :" + ScoreManager.GetHighscore().ToString();
 
-            coinText.text = CoinsManagerScript.GetCurrentCoin().ToString();
+            coinText.text = CoinManager.GetCurrentCoin().ToString();
 
         }
 
