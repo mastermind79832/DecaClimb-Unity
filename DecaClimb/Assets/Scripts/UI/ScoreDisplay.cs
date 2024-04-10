@@ -25,44 +25,44 @@ namespace Revity.DecaClimb
 
         private void Start()
         {
-            levelUpText.SetActive(false);
-            currentScore = ScoreManager.GetScore();
-            scoreText.text = currentScore.ToString();
-            int level = LevelManager.GetCurrentLevel();
-            levelText.text = level.ToString();
+            //levelUpText.SetActive(false);
+            //currentScore = ScoreManager.GetScore();
+            //scoreText.text = currentScore.ToString();
+            //int level = LevelManager.GetCurrentLevel();
+            //levelText.text = level.ToString();
 
-            LevelUp(level);
-            RetryEnable();
+            //LevelUp(level);
+            //RetryEnable();
 
         }
 
         private void RetryEnable()
         {
-            if (LevelManager.isRetryUsed)
-            {
-                retry.interactable = false;
-                GameObject videoImage = retry.transform.GetChild(0).gameObject;
-                //videoImage.GetComponentInChildren<Image>().color = new Color(0f,0f,0f,20f);
-                videoImage.SetActive(false);
-            }
+            //if (LevelManager.isRetryUsed)
+            //{
+            //    retry.interactable = false;
+            //    GameObject videoImage = retry.transform.GetChild(0).gameObject;
+            //    //videoImage.GetComponentInChildren<Image>().color = new Color(0f,0f,0f,20f);
+            //    videoImage.SetActive(false);
+            //}
         }
 
         private void LevelUp(int level)
         {
-            if (level % 5 == 0)
-            {
-                levelUpText.GetComponent<Text>().text = "CHECKPOINT";
-            }
-            else
-            {
-                levelUpText.GetComponent<Text>().text = "LEVELUP";
-            }
+            //if (level % 5 == 0)
+            //{
+            //    levelUpText.GetComponent<Text>().text = "CHECKPOINT";
+            //}
+            //else
+            //{
+            //    levelUpText.GetComponent<Text>().text = "LEVELUP";
+            //}
 
-            if (LevelManager.isLevelUp)
-            {
-                StartCoroutine(ShowLevelUp());
+            //if (LevelManager.isLevelUp)
+            //{
+            //    StartCoroutine(ShowLevelUp());
 
-            }
+            //}
         }
 
         IEnumerator ShowLevelUp()
@@ -74,16 +74,16 @@ namespace Revity.DecaClimb
 
         void FixedUpdate()
         {
-            if (ScoreManager.GetScore() > currentScore)
-            {
-                int diff = ScoreManager.GetScore() - currentScore;
-                StartCoroutine(ScoreIncrease(diff));
-                scoreText.text = ScoreManager.GetScore().ToString();
-                currentScore += diff;
-            }
-            hisghScoreText.text = "Highscore :" + ScoreManager.GetHighscore().ToString();
+            //if (ScoreManager.GetScore() > currentScore)
+            //{
+            //    int diff = ScoreManager.GetScore() - currentScore;
+            //    StartCoroutine(ScoreIncrease(diff));
+            //    scoreText.text = ScoreManager.GetScore().ToString();
+            //    currentScore += diff;
+            //}
+            //hisghScoreText.text = "Highscore :" + ScoreManager.GetHighscore().ToString();
 
-            coinText.text = CoinManager.GetCurrentCoin().ToString();
+            //coinText.text = CoinManager.GetCurrentCoin().ToString();
 
         }
 

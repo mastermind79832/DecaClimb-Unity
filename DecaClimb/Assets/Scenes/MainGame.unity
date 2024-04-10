@@ -1622,6 +1622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_GameManager: {fileID: 1161705229}
+  m_UIManager: {fileID: 1161705230}
   m_FactorDataSO: {fileID: 11400000, guid: f6aaae404dbe0bd42b85bb892f92dd70, type: 2}
   m_PillarSpawn: {fileID: 1874428544}
   m_Player: {fileID: 1970746611}
@@ -1652,7 +1653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c3f5d5b3bde4284a866d6677cee195c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverPanel: {fileID: 2127438509}
   PausePanel: {fileID: 897616591}
   pillar: {fileID: 1874428543}
 --- !u!114 &1161705230
@@ -1667,6 +1667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e641f36fc753485428133b63796b5fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_GameOverUI: {fileID: 103438812}
 --- !u!1 &1252830925
 GameObject:
   m_ObjectHideFlags: 0

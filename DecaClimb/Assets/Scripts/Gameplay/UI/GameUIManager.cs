@@ -9,7 +9,11 @@ namespace Revity.DecaClimb.Game.UI
         [SerializeField] private GameOverUI m_GameOverUI;
         public GameOverUI GameOverUI { get { return m_GameOverUI; } }
 
-        public void OnGameStart()
+		//[SerializeField] private ScoreUI m_ScoreDisplay;
+		//[SerializeField] private LevelUI m_LevelDisplay;
+		//[SerializeField] private CoinUI m_CoinDisplay;
+
+		public void OnGameStart()
         {
             GameOverUI.OnGameStart();
         }

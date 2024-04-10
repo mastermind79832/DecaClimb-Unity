@@ -12,10 +12,10 @@ namespace Revity.DecaClimb
         private int m_CurrentCoin;
         public int CurrentCoin { get { return m_CurrentCoin; } }  
 
-        public int GetCoin()
+        
+        public CoinManager() 
         {
-            m_CurrentCoin = PersistantServiceLocator.Instance.DataHandler.CoinData.Coins;
-            return m_CurrentCoin;
+            m_CurrentCoin = 0;
         }
 
         public void LevelUpCoin(int amount)

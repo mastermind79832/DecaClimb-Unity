@@ -26,7 +26,7 @@ namespace Revity.DecaClimb.Game
 
         [SerializeField] private GameObject progressPos;
 
-        private Vector3 m_staringPos;
+        private Vector3 m_staringPos = new Vector3(0, 3.3f, -5);
 
         // Start is called before the first frame update
         void Start()
@@ -69,7 +69,7 @@ namespace Revity.DecaClimb.Game
             if (transform.position.y > pos)
             {
                 SetMultiplier();
-                ScoreManager.IncreaseScore(multiplier);
+                GameSceneService.Instance.ScoreManager.IncreaseScore();
                 pos = pos + 4;
                 progressPos.GetComponent<ProgressBarScript>().progressionBarUpdate(pos);
                 // Debug.Log(ScoreScript.GetScore());
@@ -130,7 +130,7 @@ namespace Revity.DecaClimb.Game
             {
                 // coin amount update
 
-                CoinManager.IncreaseCoin(1);
+                GameSceneService.Instance.CoinManager.IncreaseCoin(1);
 
                 // destroy Coin
                 other.gameObject.SetActive(false);

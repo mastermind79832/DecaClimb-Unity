@@ -11,20 +11,22 @@ namespace Revity.DecaClimb.Game
         private int m_Highscore;
         public int Highscore {  get { return m_Highscore; } }
 
-        private readonly GameManager m_GameManager;
-
         private int m_Multiplier;
         private readonly Timer m_Timer;
 
         public float m_MultiplierTime = 2;
 
-        public ScoreManager(GameManager gameManager) 
+        public ScoreManager() 
         {
-            m_GameManager = gameManager;
 			m_Highscore = PersistantServiceLocator.Instance.DataHandler.HighscoreData.HighScore;
             m_Timer = new(m_MultiplierTime, ResetMultiplier);
             ResetScore();
 		}
+
+        public void Update(float deltaTime)
+        {
+            m_Timer.Tick(deltaTime);
+        }
 
         public void OnGameStart()
         {
@@ -45,8 +47,8 @@ namespace Revity.DecaClimb.Game
         public void IncreaseScore()
         {
             int levelScore;
-            if (m_GameManager.LevelManager.CurrentLevel >= 1)
-                levelScore = m_GameManager.LevelManager.CurrentLevel;
+            if (GameSceneService.Instance.LevelManager.CurrentLevel >= 1)
+                levelScore = GameSceneService.Instance.LevelManager.CurrentLevel;
             else
                 levelScore = 1;
 

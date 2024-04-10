@@ -18,6 +18,15 @@ namespace Revity.DecaClimb.Game
 		[SerializeField] private GameUIManager m_UIManager;
 		public GameUIManager UIManager { get { return m_UIManager; } }
 
+		private LevelManager m_LevelManager;
+		public LevelManager LevelManager { get { return m_LevelManager; } }
+
+		private ScoreManager m_ScoreManager;
+		public ScoreManager ScoreManager { get { return m_ScoreManager; } }
+
+		private CoinManager m_CoinManager;
+		public CoinManager CoinManager { get { return m_CoinManager; } }
+
 		// Factory References
 		[SerializeField] private FactoryDataSO m_FactorDataSO;
 		private FactoryService m_FactoryService;
@@ -47,6 +56,17 @@ namespace Revity.DecaClimb.Game
 		private void CreateService()
 		{
 			m_FactoryService = new(m_FactorDataSO);
+			m_LevelManager = new();
+			m_ScoreManager = new();
+			m_CoinManager = new();
+
+			GameManager.Initialize();
+			UIManager.OnGameStart();
+		}
+
+		private void Update()
+		{
+			ScoreManager.Update(Time.deltaTime);
 		}
 
 		public void RefreshLevel()

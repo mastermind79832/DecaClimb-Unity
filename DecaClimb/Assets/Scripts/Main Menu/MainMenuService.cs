@@ -43,9 +43,9 @@ namespace Revity.DecaClimb.MainMenu
 
 		public void GameStart()
 		{
-			LevelManager.ResetLevel();
-			LevelManager.isLevelUp = false;
-			LevelManager.isRetryUsed = false;
+			//LevelManager.ResetLevel();
+			//LevelManager.isLevelUp = false;
+			//LevelManager.isRetryUsed = false;
 
 			PersistantServiceLocator.Instance.SceneService.LoadGameScene();
 		}

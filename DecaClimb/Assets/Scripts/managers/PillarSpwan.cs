@@ -26,7 +26,7 @@ namespace Revity.DecaClimb.Game
 		public void Initialize()
 		{
             lastpillar = 0;
-			int level = LevelManager.GetCurrentLevel();
+			int level = GameSceneService.Instance.LevelManager.GetCurrentLevel();
 			if (level == 0)
 			{
 				minPillar = 4;
