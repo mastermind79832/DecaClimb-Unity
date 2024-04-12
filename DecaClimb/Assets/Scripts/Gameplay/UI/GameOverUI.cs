@@ -48,7 +48,6 @@ namespace Revity.DecaClimb
            
             // Set Highscore
             m_HighscoreText.text = $"Highscore: {highscore}";
-            m_GameOverPanel.SetActive(isRetryAvailable);
         }
     }
 }

@@ -78,7 +78,7 @@ namespace Revity.DecaClimb.Game
 
             // gameOverPanel.SetActive(true);
             // set highscore
-            m_GameOverUI.ShowGameOverUI(m_IsRetryPossible, 0);
+            m_GameOverUI.ShowGameOverUI(m_IsRetryPossible, GameSceneService.Instance.ScoreManager.Score);
             m_PillarController.enabled = false;
         }
 
