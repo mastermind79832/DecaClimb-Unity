@@ -97,6 +97,7 @@ namespace Revity.DecaClimb.Game
 
         private void OnCollisionEnter(Collision other)
         {
+            if(isDead) { return; }
             if (!other.gameObject.TryGetComponent(out Ground ground)) return;
 
             if (!IsPlayerAboveGround(ground)) return;
