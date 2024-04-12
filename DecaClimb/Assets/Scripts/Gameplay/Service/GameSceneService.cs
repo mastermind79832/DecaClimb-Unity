@@ -50,13 +50,13 @@ namespace Revity.DecaClimb.Game
 		}
 		private void InitializeService()
 		{
+			UIManager.Initialize();
 			m_FactoryService = new(m_FactorDataSO);
 			m_LevelManager = new();
 			m_ScoreManager = new();
 			m_CoinManager = new();
 
 			GameManager.Initialize();
-			UIManager.Initialize();
 		}
 
 		private void SetEvents()
@@ -74,20 +74,26 @@ namespace Revity.DecaClimb.Game
 
 		private void StartGame()
 		{
-			RefreshLevel();
+			LevelManager.StartGame();
+			ScoreManager.StartGame();
+			CoinManager.StartGame();
+			FactoryService.NewLevel();
+			PillarSpawn.NewLevel();
+			Player.ResetPosition();
+			UIManager.DisableInterupt();
+			//NextLevel();
 		}
 		private void Update()
 		{
 			ScoreManager.Update(Time.deltaTime);
 		}
 
-		public void RefreshLevel()
+		public void NextLevel()
 		{
-			FactoryService.Restart();
-			PillarSpawn.transform.eulerAngles = Vector3.zero;
-			PillarSpawn.Initialize();
+			FactoryService.NewLevel();
+			PillarSpawn.NewLevel();
 			Player.ResetPosition();
-			UIManager.StartGame();
+			UIManager.DisableInterupt();
 		}
 
 		// Reset everything

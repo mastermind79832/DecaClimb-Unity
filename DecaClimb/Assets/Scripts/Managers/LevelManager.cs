@@ -18,26 +18,24 @@ namespace Revity.DecaClimb.Game
         public LevelManager() 
         {
 			m_Checkpoint = PersistantServiceLocator.Instance.DataHandler.CheckpointData.Checkpoint;
-			m_CurrentLevel = m_Checkpoint;
 		}
 
-        public int GetCurrentLevel()
-        {
-            return m_CurrentLevel;
-        }
-
-        public void ResetLevel()
+        public void RestartLevel()
         {
            // m_CurrentLevel = PersistantServiceLocator.Instance.DataHandler.CheckpointData.Checkpoint;
         }
 
         public void IncreaseLevel()
 		{
-			m_CurrentLevel += 1;
-			OnLevelChanged?.Invoke(m_CurrentLevel);
-
+			SetLevel(CurrentLevel + 1);
 			SetCheckPoint();
-			ShowAds();
+			//ShowAds();
+		}
+
+		private void SetLevel(int value)
+		{
+			m_CurrentLevel = value;
+			OnLevelChanged?.Invoke(m_CurrentLevel);
 		}
 
 		private void SetCheckPoint()
@@ -60,5 +58,9 @@ namespace Revity.DecaClimb.Game
 
 			PersistantServiceLocator.Instance.DataHandler.CheckpointData.SaveCheckpoint(m_Checkpoint);
         }
-    }
+		public void StartGame()
+		{
+			SetLevel(Checkpoint);
+		}
+	}
 }

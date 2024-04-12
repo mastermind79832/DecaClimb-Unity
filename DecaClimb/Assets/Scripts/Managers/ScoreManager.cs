@@ -22,8 +22,8 @@ namespace Revity.DecaClimb.Game
         public ScoreManager() 
         {
 			m_Highscore = PersistantServiceLocator.Instance.DataHandler.HighscoreData.HighScore;
+            m_Score = 0;
             m_Timer = new(m_MultiplierTime, ResetMultiplier);
-            ResetScore();
 		}
 
         public void Update(float deltaTime)
@@ -31,14 +31,9 @@ namespace Revity.DecaClimb.Game
             m_Timer.Tick(deltaTime);
         }
 
-        public void OnGameStart()
-        {
-            m_Timer.Start();
-        }
-
         public void ResetScore()
         {
-            m_Score = 0;
+            SetScore(Score);
             ResetMultiplier();
         }
 
@@ -48,26 +43,40 @@ namespace Revity.DecaClimb.Game
         }
 
         public void IncreaseScore()
-        {
-            int levelScore;
-            if (GameSceneService.Instance.LevelManager.CurrentLevel >= 1)
-                levelScore = GameSceneService.Instance.LevelManager.CurrentLevel;
-            else
-                levelScore = 1;
+		{
+			int levelScore;
+			if (GameSceneService.Instance.LevelManager.CurrentLevel >= 1)
+				levelScore = GameSceneService.Instance.LevelManager.CurrentLevel;
+			else
+				levelScore = 1;
 
-            m_Score += levelScore * (++m_Multiplier);
-            OnScoreChanged.Invoke(m_Score);
-            m_Timer.Restart();
-        }
+			SetScore(Score + levelScore * (++m_Multiplier));
+			m_Timer.Restart();
+		}
 
-        public void SetHighscore()
+		private void SetScore(int score)
+		{
+			m_Score = score;
+			OnScoreChanged?.Invoke(m_Score);
+		}
+
+		public void SetHighscore()
         {
             m_Highscore = Score;
         }
 
         public void SaveHighscore()
         {
-			PersistantServiceLocator.Instance.DataHandler.HighscoreData.SaveHighscore(Highscore);
+            if (m_Highscore > PersistantServiceLocator.Instance.DataHandler.HighscoreData.HighScore)
+            {
+			    PersistantServiceLocator.Instance.DataHandler.HighscoreData.SaveHighscore(Highscore);
+            }
         }
-    }
+
+		public void StartGame()
+		{
+			ResetScore();
+			m_Timer.Start();
+		}
+	}
 }

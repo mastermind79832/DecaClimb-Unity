@@ -107,13 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29770bde18db87c4c964dff6bd20af32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ground: {fileID: 2769682190689121173, guid: c352bf790b4ee81409415878140a10e6, type: 3}
-  redMat: {fileID: 2100000, guid: 0a5db524b9b414a419355ec94e114b3f, type: 2}
-  safeMat: {fileID: 2100000, guid: e36036d2c72523c4c9a652ebe0299094, type: 2}
-  FinishMat: {fileID: 2100000, guid: 8eb9bf3444bdf554dafcc6348479de49, type: 2}
-  first: 0
-  last: 0
-  groundData: 
+  m_GroundData: 
+  m_Pillar: {fileID: 1983218908138729069}
 --- !u!114 &1983218908138729069
 MonoBehaviour:
   m_ObjectHideFlags: 0

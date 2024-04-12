@@ -26,7 +26,7 @@ namespace Revity.DecaClimb.Persistant
 
 		public void Initialize()
 		{	
-			m_Checkpoint = PlayerPrefs.GetInt(STR_CHECKPOINT);
+			m_Checkpoint = PlayerPrefs.GetInt(STR_CHECKPOINT, 0);
 		}
 	}
 }

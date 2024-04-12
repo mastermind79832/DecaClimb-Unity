@@ -30,7 +30,7 @@ namespace Revity.DecaClimb.Game
         public Pillar GetPillar() => m_PillarPool.GetItem();
         public Coin GetCoin() => m_CoinPool.GetItem();
 
-        public void Restart()
+        public void NewLevel()
         {
             m_PillarPool.PoolAll();
             m_CoinPool.PoolAll();

@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Revity.Core;
 using Revity.DecaClimb.Persistant;
+using Revity.DecaClimb.Game;
 
 namespace Revity.DecaClimb.MainMenu
 {
@@ -11,6 +12,9 @@ namespace Revity.DecaClimb.MainMenu
 	/// </summary>
     public class MainMenuService : MonoSingletonGeneric<MainMenuService>  
     {
+
+		[SerializeField] private GroundManager m_GroundSpawner;
+
 		protected override void Awake()
 		{
 			base.Awake();
@@ -19,7 +23,8 @@ namespace Revity.DecaClimb.MainMenu
 
 		private void Start()
 		{
-			PersistantServiceLocator.Instance.ChangeCameraBg();			
+			PersistantServiceLocator.Instance.ChangeCameraBg();
+			// m_GroundSpawner.Initialize(true, false);
 		}
 
 		private IEnumerator DisplayBannerWithDelay()
@@ -43,10 +48,6 @@ namespace Revity.DecaClimb.MainMenu
 
 		public void GameStart()
 		{
-			//LevelManager.ResetLevel();
-			//LevelManager.isLevelUp = false;
-			//LevelManager.isRetryUsed = false;
-
 			PersistantServiceLocator.Instance.SceneService.LoadGameScene();
 		}
 

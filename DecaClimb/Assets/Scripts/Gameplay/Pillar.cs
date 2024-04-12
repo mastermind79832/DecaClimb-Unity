@@ -8,15 +8,15 @@ namespace Revity.DecaClimb
     {
         [SerializeField] private Ground[] m_Grounds;
 
-        public void SetGround(int[] groundData)
+        public void SetGround(GroundType[] groundData)
         {
             for (int i = 0; i < m_Grounds.Length; i++)
             {
-                if (groundData[i] == 3)
+                if (groundData[i] == GroundType.Empty)
                     m_Grounds[i].gameObject.SetActive(false);
                 else
                 {
-                    m_Grounds[i].SetGroundType((GroundType)groundData[i]);
+                    m_Grounds[i].SetGroundType(groundData[i]);
                     m_Grounds[i].gameObject.SetActive(true);
                 }
             }

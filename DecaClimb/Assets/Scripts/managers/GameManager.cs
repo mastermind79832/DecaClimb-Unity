@@ -90,7 +90,7 @@ namespace Revity.DecaClimb.Game
             GameSceneService.Instance.LevelManager.IncreaseLevel();
 			GameSceneService.Instance.ScoreManager.SetHighscore();
 			GameSceneService.Instance.CoinManager.IncreaseCoin(GameSceneService.Instance.LevelManager.CurrentLevel * 10);
-            GameSceneService.Instance.RefreshLevel();
+            GameSceneService.Instance.NextLevel();
 			//PersistantServiceLocator.Instance.SceneService.LoadGameScene();
 		}
 
@@ -103,7 +103,7 @@ namespace Revity.DecaClimb.Game
 
 			GameSceneService.Instance.LevelManager.SaveCheckPoint();
             Time.timeScale = 1;
-			GameSceneService.Instance.ScoreManager.ResetScore();
+			GameSceneService.Instance.ScoreManager.SaveHighscore();
 			GameSceneService.Instance.CoinManager.SaveCoin();
             PersistantServiceLocator.Instance.SceneService.LoadMainMenuScene();
         }
@@ -120,9 +120,12 @@ namespace Revity.DecaClimb.Game
 
 		public void GetRetryReward()
 		{
-            m_IsRetryPossible = false;
-			GameSceneService.Instance.RefreshLevel();
+			Time.timeScale = 1;
+			m_PillarController.enabled = true;
+			m_IsRetryPossible = false;
+			GameSceneService.Instance.NextLevel();
 
 		}
+
 	}
 }

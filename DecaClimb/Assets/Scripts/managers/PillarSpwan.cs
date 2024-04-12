@@ -5,28 +5,23 @@ namespace Revity.DecaClimb.Game
 {
     public class PillarSpwan : MonoBehaviour
     {
-
         public GameObject pillar;
         public GameObject coinSpawnner;
 
-        GameObject pillars;
-
-        public static int lastpillar;
+        Pillar pillars;
 
         private int minPillar;
         private int maxPillar;
 
-        // Start is called before the first frame update
-        void Start()
+		public void NewLevel()
 		{
-			//Initialize();
-            
+            transform.eulerAngles = Vector3.zero;
+            Initialize();
 		}
 
 		public void Initialize()
 		{
-            lastpillar = 0;
-			int level = GameSceneService.Instance.LevelManager.GetCurrentLevel();
+			int level = GameSceneService.Instance.LevelManager.CurrentLevel;
 			if (level == 0)
 			{
 				minPillar = 4;
@@ -52,13 +47,13 @@ namespace Revity.DecaClimb.Game
 
             for (int i = 0; i <= pillarAmount; i++)
             {
-                pillars = GameSceneService.Instance.FactoryService.GetPillar().gameObject;
+                pillars = GameSceneService.Instance.FactoryService.GetPillar();
                 pillars.transform.parent = transform;
                 pillars.transform.eulerAngles = Vector3.zero;
                 pillars.transform.position = new Vector3(transform.position.x, i * 4, transform.position.z);
                 SpwanCoinSpwaner(i);
 
-                pillars.GetComponent<GroundSpwanner>().Initialize(i == 0, i == pillarAmount);
+                pillars.GetComponent<GroundManager>().Initialize(i == 0, i == pillarAmount);
             }
 
             //pillars = GameSceneService.Instance.FactoryService.GetPillar().gameObject;
@@ -77,16 +72,14 @@ namespace Revity.DecaClimb.Game
             if (isCoin == 1)
             {
                 Coin coin = GameSceneService.Instance.FactoryService.GetCoin();
-                coin.transform.parent = transform;
+                coin.transform.parent = pillars.transform;
                 coin.transform.position = pillars.transform.position;
                 if (i == 0)
-				    coin.transform.rotation = Quaternion.Euler(0, Random.Range(20,330), 0);
-                else
-					coin.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
+                    coin.transform.rotation = Quaternion.Euler(0, Random.Range(i == 0 ? 20 : 0, i == 0 ? 330 : 360), 0);
 				//Instantiate(coinSpawnner, pillars.transform.position, Quaternion.identity, transform);
 
 			}
         }
 
-    }
+	}
 }

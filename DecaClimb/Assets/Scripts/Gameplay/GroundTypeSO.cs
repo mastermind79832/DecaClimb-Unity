@@ -9,7 +9,8 @@ namespace Revity.DecaClimb
 	{
 		Normal = 0,
 		Danger = 1,
-		Goal = 2
+		Goal = 2,
+		Empty = -1
 	}
 
 	[Serializable]

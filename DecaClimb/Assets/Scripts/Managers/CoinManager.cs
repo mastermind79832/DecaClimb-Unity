@@ -14,18 +14,28 @@ namespace Revity.DecaClimb
         
         public CoinManager() 
         {
-            m_CurrentCoin = 0;
+			m_CurrentCoin = 0;
         }
 
         public void IncreaseCoin(int amount)
-        {
-            m_CurrentCoin += amount;
-            OnCoinChange?.Invoke(CurrentCoin);
-        }
+		{
+            SetCoin(CurrentCoin + amount);
+		}
 
-        public void SaveCoin()
+		private void SetCoin(int amount)
+		{
+			m_CurrentCoin = amount;
+			OnCoinChange?.Invoke(CurrentCoin);
+		}
+
+		public void SaveCoin()
         {
 			PersistantServiceLocator.Instance.DataHandler.CoinData.SaveCoins(CurrentCoin);
         }
-    }
+
+		public void StartGame()
+		{
+			SetCoin(CurrentCoin);
+		}
+	}
 }

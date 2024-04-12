@@ -33,7 +33,12 @@ namespace Revity.DecaClimb.Core
 
         public T GetItem()
         {
-            T item = m_Pool.Find(i => i.gameObject.activeSelf == false) ?? m_CreateFunc();
+            T item = m_Pool.Find(i => i.gameObject.activeSelf == false);
+            if (item == null)
+            {
+                item = m_CreateFunc();
+                m_Pool.Add(item);
+            }
             item.gameObject.SetActive(true);
 			return item;
         }

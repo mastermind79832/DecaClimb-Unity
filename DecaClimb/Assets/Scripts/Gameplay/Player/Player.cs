@@ -28,8 +28,8 @@ namespace Revity.DecaClimb.Game
         // Start is called before the first frame update
         void Start()
         {
-            multiplierTime = maxMultTime;
-            m_staringPos = transform.position;
+           multiplierTime = maxMultTime;
+           // m_staringPos = transform.position;
         }
 
         // Update is called once per frame
@@ -97,8 +97,7 @@ namespace Revity.DecaClimb.Game
 
         private void OnCollisionEnter(Collision other)
         {
-            Ground ground = other.gameObject.GetComponent<Ground>();
-            if (ground == null) return;
+            if (!other.gameObject.TryGetComponent(out Ground ground)) return;
 
             if (!IsPlayerAboveGround(ground)) return;
 
@@ -128,15 +127,8 @@ namespace Revity.DecaClimb.Game
 
             if (other.gameObject.TryGetComponent(out Coin coin))
             {
-                // coin amount update
-
                 GameSceneService.Instance.CoinManager.IncreaseCoin(coin.Valve);
-
-                // destroy Coin
                 other.gameObject.SetActive(false);
-                //Destroy(other.gameObject);
-                //Debug.Log("coin");
-
             }
         }
 
@@ -147,6 +139,9 @@ namespace Revity.DecaClimb.Game
             transform.position = m_staringPos;
 			Invoke(nameof(StartTrail), 1f);
             GetComponent<Collider>().enabled = true;
+
+            pos = 4;
+            isDead = false;
 		}
 
         private void StartTrail()
