@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,7 +14,7 @@ namespace Revity.DecaClimb.Persistant
 
 		[Header("Data")]
 		[SerializeField] private SceneDataSO m_SceneDataSO;
-		private SceneAsset m_CurrentScene;
+		private string m_CurrentScene;
 
 		[Header("Reference")]
 		[SerializeField] private LoadingScreen m_LoadingScreen;
@@ -31,21 +30,21 @@ namespace Revity.DecaClimb.Persistant
 				m_CurrentScene = m_SceneDataSO.GameScene;
 				return;
 			}
-            SceneManager.LoadScene(m_SceneDataSO.LogoIntroScene.name, LoadSceneMode.Additive);
+            SceneManager.LoadScene(m_SceneDataSO.LogoIntroScene, LoadSceneMode.Additive);
 			m_CurrentScene = m_SceneDataSO.LogoIntroScene;
 		}
 
-		private void LoadScene(SceneAsset scene)
+		private void LoadScene(string scene)
 		{
 			m_LoadingScreen.StartLoadingScreen();
 
-			m_UnloadingSceneOperation = SceneManager.UnloadSceneAsync(m_CurrentScene.name);
-			m_LoadingSceneOperation = SceneManager.LoadSceneAsync(scene.name, LoadSceneMode.Additive);
+			m_UnloadingSceneOperation = SceneManager.UnloadSceneAsync(m_CurrentScene);
+			m_LoadingSceneOperation = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
 
 			StartCoroutine(LoadingScene(scene));
 		}
 
-		private IEnumerator LoadingScene(SceneAsset scene)
+		private IEnumerator LoadingScene(string scene)
 		{
 			float progress;
 
