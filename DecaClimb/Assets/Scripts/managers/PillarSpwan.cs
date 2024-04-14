@@ -74,8 +74,7 @@ namespace Revity.DecaClimb.Game
                 Coin coin = GameSceneService.Instance.FactoryService.GetCoin();
                 coin.transform.parent = pillars.transform;
                 coin.transform.position = pillars.transform.position;
-                if (i == 0)
-                    coin.transform.rotation = Quaternion.Euler(0, Random.Range(i == 0 ? 20 : 0, i == 0 ? 330 : 360), 0);
+                coin.transform.rotation = Quaternion.Euler(0, Random.Range(i == 0 ? 20 : 0, i == 0 ? 330 : 360), 0);
 				//Instantiate(coinSpawnner, pillars.transform.position, Quaternion.identity, transform);
 
 			}
