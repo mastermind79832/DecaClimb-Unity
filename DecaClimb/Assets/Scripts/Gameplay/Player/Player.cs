@@ -5,31 +5,31 @@ namespace Revity.DecaClimb.Game
     public class Player : MonoBehaviour
     {
         [SerializeField] private float m_GoalError;
-        private float jumpvelocity;
-        [SerializeField] private float jp = 5.2f;
+        private float m_JumpVelocity;
+        [SerializeField] private float m_JumpPower = 5.2f;
 
-        [SerializeField] private GameObject multiplierDisp;
+        [SerializeField] private GameObject m_MultiplierPopup;
 
-        [SerializeField] private float maxMultTime = 2;
+        [SerializeField] private float m_MaxMultiplierTime = 2;
 
-        private int multiplier;
+        private int m_Multiplier;
 
-        private float multiplierTime;
+        private float m_MultiplierTime;
 
-        [SerializeField] private Rigidbody rb;
-        float pos = 4;
-        private bool isDead = false;
+        [SerializeField] private Rigidbody m_RigidBody;
+        private float m_FloorPos = 4;
+        private bool b_isDead = false;
 
-        [SerializeField] private GameManager gm;
+        [SerializeField] private GameManager m_GameManager;
 
-        [SerializeField] private GameObject progressPos;
+        [SerializeField] private GameObject m_ProgressBar;
 
         private Vector3 m_staringPos = new Vector3(0, 3.3f, -5);
 
         // Start is called before the first frame update
         void Start()
         {
-           multiplierTime = maxMultTime;
+           m_MultiplierTime = m_MaxMultiplierTime;
            // m_staringPos = transform.position;
         }
 
@@ -43,33 +43,33 @@ namespace Revity.DecaClimb.Game
 
             OutofBound();
 
-            multiplierTime += Time.deltaTime;
+            m_MultiplierTime += Time.deltaTime;
 
-            if (multiplierTime >= maxMultTime)
+            if (m_MultiplierTime >= m_MaxMultiplierTime)
             {
-                multiplier = 0;
-                multiplierDisp.SetActive(false);
+                m_Multiplier = 0;
+                m_MultiplierPopup.SetActive(false);
             }
         }
 
         private void JumpControl()
         {
             if (Input.GetMouseButton(0))
-                jumpvelocity = jp * 2;
-            else if (isDead)
-                jumpvelocity = 0;
+                m_JumpVelocity = m_JumpPower * 2;
+            else if (b_isDead)
+                m_JumpVelocity = 0;
             else
-                jumpvelocity = jp;
+                m_JumpVelocity = m_JumpPower;
         }
 
         private void FloorPassed()
         {
-            if (transform.position.y > pos)
+            if (transform.position.y > m_FloorPos)
             {
                 SetMultiplier();
                 GameSceneService.Instance.ScoreManager.IncreaseScore();
-                pos = pos + 4;
-                progressPos.GetComponent<ProgressBarScript>().progressionBarUpdate(pos);
+                m_FloorPos = m_FloorPos + 4;
+                m_ProgressBar.GetComponent<ProgressBarScript>().progressionBarUpdate(m_FloorPos);
                 // Debug.Log(ScoreScript.GetScore());
             }
         }
@@ -77,13 +77,13 @@ namespace Revity.DecaClimb.Game
         private void SetMultiplier()
         {
 
-            multiplier += 1;
-            multiplierTime = 0;
+            m_Multiplier += 1;
+            m_MultiplierTime = 0;
 
-            if (multiplier >= 2)
+            if (m_Multiplier >= 2)
             {
-                multiplierDisp.GetComponent<TextMesh>().text = "x" + multiplier.ToString();
-                multiplierDisp.SetActive(true);
+                m_MultiplierPopup.GetComponent<TextMesh>().text = "x" + m_Multiplier.ToString();
+                m_MultiplierPopup.SetActive(true);
             }
         }
 
@@ -91,38 +91,43 @@ namespace Revity.DecaClimb.Game
         {
             if (transform.position.y < -2)
             {
-                Destroy(gameObject);
-                gm.GameOver();
+                gameObject.SetActive(false);
+                m_GameManager.GameOver();
             }
         }
 
         private void OnCollisionEnter(Collision other)
-        {
-            if(isDead) { return; }
-            if (!other.gameObject.TryGetComponent(out Ground ground)) return;
+		{
+			if (b_isDead) { return; }
+			if (!other.gameObject.TryGetComponent(out Ground ground)) return;
 
-            if (!IsPlayerAboveGround(ground)) return;
+			if (!IsPlayerAboveGround(ground)) return;
 
-            if (ground.GroundType == GroundType.Normal)
-            {
-                rb.velocity = Vector3.up * jumpvelocity;
-                FloorPassed();
+			if (ground.GroundType == GroundType.Normal)
+			{
+				m_RigidBody.velocity = Vector3.up * m_JumpVelocity;
+				FloorPassed();
 
-            }
-            else if (ground.GroundType == GroundType.Danger)
-            {
-                isDead = true;
-                //Debug.Log("DEad");
-                gm.GameOver();
+			}
+			else if (ground.GroundType == GroundType.Danger)
+			{
+				b_isDead = true;
+				//Debug.Log("DEad");
+				m_GameManager.GameOver();
 
-            }
-            else if (ground.GroundType == GroundType.Goal && transform.position.y - ground.transform.position.y > m_GoalError)
-            {
-                gm.GameFinish();
-            }
+			}
+			else if (ground.GroundType == GroundType.Goal && GroundError(ground))
+			{
+				m_GameManager.GameFinish();
+			}
 
-        }
-        private bool IsPlayerAboveGround(Ground ground) => ground.transform.position.y < transform.position.y;
+		}
+
+		private bool GroundError(Ground ground) =>
+			transform.position.y - ground.transform.position.y > m_GoalError;
+
+		private bool IsPlayerAboveGround(Ground ground) => 
+            ground.transform.position.y < transform.position.y;
 
 		private void OnTriggerEnter(Collider other)
         {
@@ -136,14 +141,15 @@ namespace Revity.DecaClimb.Game
 
 		public void ResetPosition()
 		{
+            gameObject.SetActive(true);
             GetComponent<Collider>().enabled = false;
 			transform.GetChild(0).GetComponent<TrailRenderer>().enabled = false;
             transform.position = m_staringPos;
 			Invoke(nameof(StartTrail), 1f);
             GetComponent<Collider>().enabled = true;
 
-            pos = 4;
-            isDead = false;
+            m_FloorPos = 4;
+            b_isDead = false;
 		}
 
         private void StartTrail()
