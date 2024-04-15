@@ -4,6 +4,7 @@ namespace Revity.DecaClimb.Game
 {
     public class Player : MonoBehaviour
     {
+        [SerializeField] private float m_GoalError;
         private float jumpvelocity;
         [SerializeField] private float jp = 5.2f;
 
@@ -115,7 +116,7 @@ namespace Revity.DecaClimb.Game
                 gm.GameOver();
 
             }
-            else if (ground.GroundType == GroundType.Goal)
+            else if (ground.GroundType == GroundType.Goal && transform.position.y - ground.transform.position.y > m_GoalError)
             {
                 gm.GameFinish();
             }
