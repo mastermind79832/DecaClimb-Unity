@@ -133,6 +133,7 @@ namespace Revity.DecaClimb.Game
             gameObject.SetActive(true);
             m_Collider.enabled = false;
 			m_TrailRenderer.enabled = false;
+
             transform.position = m_staringPos;
 			Invoke(nameof(StartTrail), 1f);
 			m_Collider.enabled = true;

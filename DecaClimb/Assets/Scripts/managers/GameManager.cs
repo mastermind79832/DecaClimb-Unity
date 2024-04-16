@@ -89,7 +89,7 @@ namespace Revity.DecaClimb.Game
         {
             GameSceneService.Instance.LevelManager.IncreaseLevel();
 			GameSceneService.Instance.ScoreManager.SetHighscore();
-			GameSceneService.Instance.CoinManager.IncreaseCoin(GameSceneService.Instance.LevelManager.CurrentLevel * 10);
+			GameSceneService.Instance.CoinManager.IncreaseCoin(GameSceneService.Instance.LevelManager.CurrentLevel * 2);
             GameSceneService.Instance.NextLevel();
 			//PersistantServiceLocator.Instance.SceneService.LoadGameScene();
 		}

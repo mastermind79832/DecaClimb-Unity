@@ -16,9 +16,9 @@ namespace Revity.DecaClimb.Persistant
 
 		public void SaveCoins(int coins)
 		{
-			PlayerPrefs.SetInt(STR_COINS, coins);
-			m_Coins = coins;
-			OnCoinsChanged?.Invoke(coins);
+			m_Coins += coins;
+			PlayerPrefs.SetInt(STR_COINS, m_Coins);
+			OnCoinsChanged?.Invoke(m_Coins);
 		}
 
 		public void NewInstall()
