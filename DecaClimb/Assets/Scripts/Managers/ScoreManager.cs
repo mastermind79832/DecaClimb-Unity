@@ -15,9 +15,10 @@ namespace Revity.DecaClimb.Game
         private int m_Multiplier;
         private readonly Timer m_Timer;
 
-        public float m_MultiplierTime = 2;
+        public float m_MultiplierTime = 2f;
 
         public event Action<int> OnScoreChanged;
+        public event Action<int> OnMultiplierChanged;
 
         public ScoreManager() 
         {
@@ -40,7 +41,8 @@ namespace Revity.DecaClimb.Game
         private void ResetMultiplier()
         {
             m_Multiplier = 0;
-        }
+			OnMultiplierChanged?.Invoke(m_Multiplier);
+		}
 
         public void IncreaseScore()
 		{
@@ -51,6 +53,7 @@ namespace Revity.DecaClimb.Game
 				levelScore = 1;
 
 			SetScore(Score + levelScore * (++m_Multiplier));
+            OnMultiplierChanged?.Invoke(m_Multiplier);
 			m_Timer.Restart();
 		}
 
@@ -77,6 +80,12 @@ namespace Revity.DecaClimb.Game
 		{
 			ResetScore();
 			m_Timer.Start();
+		}
+
+		public void NewLevel()
+		{
+			ResetMultiplier();
+            m_Timer.Restart();
 		}
 	}
 }

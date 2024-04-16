@@ -45,6 +45,8 @@ namespace Revity.DecaClimb.Game
 			base.Awake();
 			InitializeService();
 			SetEvents();
+
+			InjectDependencies();
 			// Start game
 			// Check for tutorial
 		}
@@ -57,6 +59,11 @@ namespace Revity.DecaClimb.Game
 			m_CoinManager = new();
 
 			GameManager.Initialize();
+		}
+
+		private void InjectDependencies()
+		{
+			m_Player.InjectDependecies(GameManager, ScoreManager);
 		}
 
 		private void SetEvents()
@@ -94,6 +101,7 @@ namespace Revity.DecaClimb.Game
 			PillarSpawn.NewLevel();
 			Player.ResetPosition();
 			UIManager.DisableInterupt();
+			ScoreManager.NewLevel();
 		}
 
 		// Reset everything
