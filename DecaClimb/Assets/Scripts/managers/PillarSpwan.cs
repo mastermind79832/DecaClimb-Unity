@@ -5,10 +5,9 @@ namespace Revity.DecaClimb.Game
 {
     public class PillarSpwan : MonoBehaviour
     {
-        public GameObject pillar;
         public GameObject coinSpawnner;
 
-        Pillar pillars;
+        Pillar m_pillar;
 
         private int minPillar;
         private int maxPillar;
@@ -47,13 +46,14 @@ namespace Revity.DecaClimb.Game
 
             for (int i = 0; i <= pillarAmount; i++)
             {
-                pillars = GameSceneService.Instance.FactoryService.GetPillar();
-                pillars.transform.parent = transform;
-                pillars.transform.eulerAngles = Vector3.zero;
-                pillars.transform.position = new Vector3(transform.position.x, i * 4, transform.position.z);
+                m_pillar = GameSceneService.Instance.FactoryService.GetPillar();
+                m_pillar.PillarLevel = i;
+                m_pillar.transform.parent = transform;
+                m_pillar.transform.eulerAngles = Vector3.zero;
+                m_pillar.transform.position = new Vector3(transform.position.x, i * 4, transform.position.z);
                 SpwanCoinSpwaner(i);
 
-                pillars.GetComponent<GroundManager>().Initialize(i == 0, i == pillarAmount);
+                m_pillar.GetComponent<GroundManager>().Initialize(i == 0, i == pillarAmount);
             }
 
             //pillars = GameSceneService.Instance.FactoryService.GetPillar().gameObject;
@@ -72,8 +72,8 @@ namespace Revity.DecaClimb.Game
             if (isCoin == 1)
             {
                 Coin coin = GameSceneService.Instance.FactoryService.GetCoin();
-                coin.transform.parent = pillars.transform;
-                coin.transform.position = pillars.transform.position;
+                coin.transform.parent = m_pillar.transform;
+                coin.transform.position = m_pillar.transform.position;
                 coin.transform.rotation = Quaternion.Euler(0, Random.Range(i == 0 ? 20 : 0, i == 0 ? 330 : 360), 0);
 				//Instantiate(coinSpawnner, pillars.transform.position, Quaternion.identity, transform);
 

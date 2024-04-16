@@ -7,8 +7,14 @@ namespace Revity.DecaClimb
     public class Pillar : MonoBehaviour
     {
         [SerializeField] private Ground[] m_Grounds;
+        public int PillarLevel { get; set; }
 
-        public void SetGround(GroundType[] groundData)
+		private void Awake()
+		{
+			foreach (Ground ground in m_Grounds)
+                ground.InjectDependencies(this);
+		}
+		public void SetGround(GroundType[] groundData)
         {
             for (int i = 0; i < m_Grounds.Length; i++)
             {

@@ -4,125 +4,119 @@ namespace Revity.DecaClimb.Game
 {
     public class Player : MonoBehaviour
     {
-        [SerializeField] private float m_GoalError;
-        private float jumpvelocity;
-        [SerializeField] private float jp = 5.2f;
+        [Header("Player")]
+        [SerializeField] private float m_GroundError;
+        [SerializeField] private float m_JumpPower = 5.2f;
+        private float m_JumpVelocity;
 
-        [SerializeField] private GameObject multiplierDisp;
+        [Header("Multiplier")]
+        [SerializeField] private TextMesh m_MultiplierPopup;
 
-        [SerializeField] private float maxMultTime = 2;
+        private int m_CurrentGroundLevel = 4;
+        private bool b_isDead = false;
 
-        private int multiplier;
+        [Header("Referneces")]
+        [SerializeField] private Rigidbody m_RigidBody;
+        [SerializeField] private Collider m_Collider;
+        [SerializeField] private TrailRenderer m_TrailRenderer;
 
-        private float multiplierTime;
-
-        [SerializeField] private Rigidbody rb;
-        float pos = 4;
-        private bool isDead = false;
-
-        [SerializeField] private GameManager gm;
-
-        [SerializeField] private GameObject progressPos;
+        private GameManager m_GameManager;
+        private ScoreManager m_ScoreManager;
+        //[SerializeField] private GameObject m_ProgressBar;
 
         private Vector3 m_staringPos = new Vector3(0, 3.3f, -5);
 
         // Start is called before the first frame update
         void Start()
         {
-           multiplierTime = maxMultTime;
            // m_staringPos = transform.position;
         }
+
+        public void InjectDependecies(GameManager gameManager, ScoreManager scoreManager)
+        {
+            m_GameManager = gameManager;
+            m_ScoreManager = scoreManager;
+
+            m_ScoreManager.OnMultiplierChanged += SetMultiplier;
+        }
+
+        private void SetMultiplier(int multiplier)
+        {
+			if (multiplier >= 2)
+			{
+				m_MultiplierPopup.GetComponent<TextMesh>().text = "x" + multiplier.ToString();
+				m_MultiplierPopup.gameObject.SetActive(true);
+			}
+            else
+            {
+				m_MultiplierPopup.gameObject.SetActive(false);
+			}
+		}
 
         // Update is called once per frame
         void Update()
         {
-
             JumpControl();
-
-            // FloorPassed();
-
             OutofBound();
-
-            multiplierTime += Time.deltaTime;
-
-            if (multiplierTime >= maxMultTime)
-            {
-                multiplier = 0;
-                multiplierDisp.SetActive(false);
-            }
         }
 
         private void JumpControl()
         {
             if (Input.GetMouseButton(0))
-                jumpvelocity = jp * 2;
-            else if (isDead)
-                jumpvelocity = 0;
+                m_JumpVelocity = m_JumpPower * 2;
+            else if (b_isDead)
+                m_JumpVelocity = 0;
             else
-                jumpvelocity = jp;
+                m_JumpVelocity = m_JumpPower;
         }
-
-        private void FloorPassed()
-        {
-            if (transform.position.y > pos)
-            {
-                SetMultiplier();
-                GameSceneService.Instance.ScoreManager.IncreaseScore();
-                pos = pos + 4;
-                progressPos.GetComponent<ProgressBarScript>().progressionBarUpdate(pos);
-                // Debug.Log(ScoreScript.GetScore());
-            }
-        }
-
-        private void SetMultiplier()
-        {
-
-            multiplier += 1;
-            multiplierTime = 0;
-
-            if (multiplier >= 2)
-            {
-                multiplierDisp.GetComponent<TextMesh>().text = "x" + multiplier.ToString();
-                multiplierDisp.SetActive(true);
-            }
-        }
-
         private void OutofBound()
         {
             if (transform.position.y < -2)
             {
-                Destroy(gameObject);
-                gm.GameOver();
+                gameObject.SetActive(false);
+                m_GameManager.GameOver();
             }
         }
 
         private void OnCollisionEnter(Collision other)
+		{
+			if (b_isDead) return;
+			if (!other.gameObject.TryGetComponent(out Ground ground)) return;
+
+			if (!IsPlayerAboveGround(ground)) return;
+
+			else if (ground.GroundType == GroundType.Danger && GroundError(ground))
+			{
+				b_isDead = true;
+				m_GameManager.GameOver();
+
+			}
+			else if (ground.GroundType == GroundType.Goal && GroundError(ground))
+			{
+				m_GameManager.GameFinish();
+			}
+			else if (ground.GroundType == GroundType.Normal)
+			{
+				m_RigidBody.velocity = Vector3.up * m_JumpVelocity;
+				CheckFloorPassed(ground);
+			}
+
+		}
+        private void CheckFloorPassed(Ground ground)
         {
-            if(isDead) { return; }
-            if (!other.gameObject.TryGetComponent(out Ground ground)) return;
-
-            if (!IsPlayerAboveGround(ground)) return;
-
-            if (ground.GroundType == GroundType.Normal)
+            if (m_CurrentGroundLevel < ground.GetLevel())
             {
-                rb.velocity = Vector3.up * jumpvelocity;
-                FloorPassed();
-
+                m_ScoreManager.IncreaseScore();
+                m_CurrentGroundLevel = ground.GetLevel();
+                //m_ProgressBar.GetComponent<ProgressBarScript>().progressionBarUpdate(m_FloorPos);
             }
-            else if (ground.GroundType == GroundType.Danger)
-            {
-                isDead = true;
-                //Debug.Log("DEad");
-                gm.GameOver();
-
-            }
-            else if (ground.GroundType == GroundType.Goal && transform.position.y - ground.transform.position.y > m_GoalError)
-            {
-                gm.GameFinish();
-            }
-
         }
-        private bool IsPlayerAboveGround(Ground ground) => ground.transform.position.y < transform.position.y;
+
+		private bool GroundError(Ground ground) =>
+			transform.position.y - ground.transform.position.y > m_GroundError;
+
+		private bool IsPlayerAboveGround(Ground ground) => 
+            ground.transform.position.y < transform.position.y;
 
 		private void OnTriggerEnter(Collider other)
         {
@@ -136,19 +130,21 @@ namespace Revity.DecaClimb.Game
 
 		public void ResetPosition()
 		{
-            GetComponent<Collider>().enabled = false;
-			transform.GetChild(0).GetComponent<TrailRenderer>().enabled = false;
+            gameObject.SetActive(true);
+            m_Collider.enabled = false;
+			m_TrailRenderer.enabled = false;
+
             transform.position = m_staringPos;
 			Invoke(nameof(StartTrail), 1f);
-            GetComponent<Collider>().enabled = true;
+			m_Collider.enabled = true;
 
-            pos = 4;
-            isDead = false;
+            m_CurrentGroundLevel = 0;
+            b_isDead = false;
 		}
 
         private void StartTrail()
         {
-			transform.GetChild(0).GetComponent<TrailRenderer>().enabled = true;
+			m_TrailRenderer.enabled = true;
 
         }
 	}

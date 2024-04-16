@@ -12,8 +12,6 @@ namespace Revity.DecaClimb.Game
     /// </summary>
     public class GameManager : MonoBehaviour
     {
-        //public GameObject gameOverPanel;
-
         // Reference
         private GameOverUI m_GameOverUI;
         private PauseUI m_PauseUI;
@@ -25,12 +23,16 @@ namespace Revity.DecaClimb.Game
         public void Initialize()
         {
             m_IsRetryPossible = true;
-            m_GameOverUI = GameSceneService.Instance.UIManager.GameOverUI;
-            m_PauseUI = GameSceneService.Instance.UIManager.PauseUI;
+        }
+        public void InjectDependencies(GameOverUI gameOverUI, PauseUI pauseUI)
+        {
+            m_GameOverUI = gameOverUI;
+            m_PauseUI = pauseUI;
 
             m_GameOverUI.Initialize(RetryButton,MainMenu);
             m_PauseUI.Initialize(GameOver,ContinueGame);
         }
+
         // Update is called once per frame
         void Update()
         {
@@ -75,9 +77,6 @@ namespace Revity.DecaClimb.Game
         public void GameOver()
         {
             GameSceneService.Instance.ScoreManager.SetHighscore();
-
-            // gameOverPanel.SetActive(true);
-            // set highscore
             m_GameOverUI.ShowGameOverUI(m_IsRetryPossible, GameSceneService.Instance.ScoreManager.Score);
             m_PillarController.enabled = false;
         }
@@ -89,7 +88,7 @@ namespace Revity.DecaClimb.Game
         {
             GameSceneService.Instance.LevelManager.IncreaseLevel();
 			GameSceneService.Instance.ScoreManager.SetHighscore();
-			GameSceneService.Instance.CoinManager.IncreaseCoin(GameSceneService.Instance.LevelManager.CurrentLevel * 10);
+			GameSceneService.Instance.CoinManager.IncreaseCoin(GameSceneService.Instance.LevelManager.CurrentLevel * 2);
             GameSceneService.Instance.NextLevel();
 			//PersistantServiceLocator.Instance.SceneService.LoadGameScene();
 		}

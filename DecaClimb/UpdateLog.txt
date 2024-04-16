@@ -1,0 +1,20 @@
+==== V1.0.5 ======
+Changes:
+- Progress bar removed
+- Decreased Difficulty
+Fixes:
+- multiplier issue
+- Close Button in Instruction
+
+==== V1.0.4 ======
+Changes:
+- Removed Upgrade button. Temporary
+Fixes:
+- Fixed Logo Alignment
+- Updated win condition to be on top on the floor not side.
+
+==== V1.0.3 ======
+Changes:
+- Removed testing ads
+Fixes: 
+- Fixed coin spawning

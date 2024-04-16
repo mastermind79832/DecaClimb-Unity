@@ -45,7 +45,7 @@ namespace Revity.Core
 		}
 
 		/// <summary>
-		/// Moves the timer
+		/// Moves the timer. Need to be called in Update
 		/// </summary>
 		/// <param name="deltaTime">how much time have passed</param>
 		public void Tick(float deltaTime)
