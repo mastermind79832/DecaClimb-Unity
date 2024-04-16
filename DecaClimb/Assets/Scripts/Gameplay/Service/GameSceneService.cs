@@ -64,6 +64,7 @@ namespace Revity.DecaClimb.Game
 		private void InjectDependencies()
 		{
 			m_Player.InjectDependecies(GameManager, ScoreManager);
+			GameManager.InjectDependencies(UIManager.GameOverUI, UIManager.PauseUI);
 		}
 
 		private void SetEvents()
@@ -103,13 +104,5 @@ namespace Revity.DecaClimb.Game
 			UIManager.DisableInterupt();
 			ScoreManager.NewLevel();
 		}
-
-		// Reset everything
-
-		// Start game
-		// Pause game
-		// Stop game
-
-
 	}
 }

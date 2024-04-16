@@ -43,7 +43,7 @@ namespace Revity.DecaClimb
         private void GroundDestroy()
 		{
 
-            int amountToDestroy = GetRandom(2, 6);
+            int amountToDestroy = GetRandom(2, 4);
 
 			for (int i = 0; i < amountToDestroy; i++)
 			{
@@ -66,10 +66,11 @@ namespace Revity.DecaClimb
 			if (m_IsLastPillar) return;
 
 			int normalCount = GetNormalGroundCount();
+			normalCount = normalCount - 2 <= 0 ? normalCount : normalCount - 2;
 			/* atleast one danger ground 
 			 * atleast one normal ground
 			 */
-			int dangerZone = GetRandom(1, normalCount);
+			int dangerZone = GetRandom(0, normalCount);
 
 			for (int i = 0; i < dangerZone; i++)
 			{
