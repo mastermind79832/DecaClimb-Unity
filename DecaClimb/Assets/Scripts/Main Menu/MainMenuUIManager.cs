@@ -20,7 +20,7 @@ namespace Revity.DecaClimb.MainMenu
         [SerializeField] private InputField m_LevelCheat;
 
         [SerializeField] private Button m_PlayButton;
-        [SerializeField] private Button m_UpgradeButton;
+        //[SerializeField] private Button m_StoreButton;
 
 		private void Awake()
         {
@@ -31,17 +31,26 @@ namespace Revity.DecaClimb.MainMenu
 
 		private void Start()
 		{
-            m_HighScoreText.text = PersistantServiceLocator.Instance.DataHandler.HighscoreData.HighScore.ToString();
-            m_CheckPointText.text = PersistantServiceLocator.Instance.DataHandler.CheckpointData.Checkpoint.ToString();
-            m_CoinText.text = PersistantServiceLocator.Instance.DataHandler.CoinData.Coins.ToString();
+			SetUIText();
+			SetButtons();
+		}
 
-            m_PlayButton.onClick.AddListener(MainMenuService.Instance.GameStart);
-            m_UpgradeButton.onClick.AddListener(MainMenuService.Instance.OpenUpgrade);			
+		private void SetButtons()
+		{
+			m_PlayButton.onClick.AddListener(MainMenuService.Instance.GameStart);
+			// m_StoreButton.onClick.AddListener(MainMenuService.Instance.OpenStore);			
+		}
+
+		private void SetUIText()
+		{
+			m_HighScoreText.text = PersistantServiceLocator.Instance.DataHandler.HighscoreData.HighScore.ToString();
+			m_CheckPointText.text = PersistantServiceLocator.Instance.DataHandler.CheckpointData.Checkpoint.ToString();
+			m_CoinText.text = PersistantServiceLocator.Instance.DataHandler.CoinData.Coins.ToString();
 		}
 
 		public void UpgradePage()
         {
-			PersistantServiceLocator.Instance.SceneService.LoadUpgradeScene();        
+			PersistantServiceLocator.Instance.SceneService.LoadStoreScene();        
         }
 
         #region Cheat
