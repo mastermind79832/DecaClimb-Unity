@@ -14,7 +14,8 @@ namespace Revity.DecaClimb
 		{
             Application.targetFrameRate = 90;
 		}
-		void Start()
+
+        public void RunIntro()
         {
             StartCoroutine(RunLogo());
         }
