@@ -666,7 +666,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ' <-Swipe to Rotate ->'
+  m_text: ' <-      Swipe to Rotate      ->'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c969bb3f425381c4eaec5b0636f792c6, type: 2}
   m_sharedMaterial: {fileID: 7026825790344093962, guid: c969bb3f425381c4eaec5b0636f792c6,
@@ -1705,7 +1705,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hold Screen to jump
+  m_text: Hold Screen to jump higher
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c969bb3f425381c4eaec5b0636f792c6, type: 2}
   m_sharedMaterial: {fileID: 7026825790344093962, guid: c969bb3f425381c4eaec5b0636f792c6,
