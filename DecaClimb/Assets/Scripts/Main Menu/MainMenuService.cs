@@ -51,9 +51,9 @@ namespace Revity.DecaClimb.MainMenu
 			PersistantServiceLocator.Instance.SceneService.LoadGameScene();
 		}
 
-		public void OpenUpgrade()
+		public void OpenStore()
 		{
-			PersistantServiceLocator.Instance.SceneService.LoadUpgradeScene();
+			PersistantServiceLocator.Instance.SceneService.LoadStoreScene();
 		}
 
 	}

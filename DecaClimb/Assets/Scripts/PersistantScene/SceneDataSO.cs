@@ -19,12 +19,12 @@ namespace Revity.DecaClimb
 			LogoIntroScene = LogoIntroSceneRef.name;
 			MainMenuScene = MainMenuSceneRef.name;
 			GameScene = GameSceneRef.name;
-			UpgradeScene = UpgradeSceneRef.name;
+			StoreScene = UpgradeSceneRef.name;
 		}
 #endif
 		public string LogoIntroScene;
 		public string MainMenuScene;
 		public string GameScene;
-		public string UpgradeScene;
+		public string StoreScene;
 	}
 }

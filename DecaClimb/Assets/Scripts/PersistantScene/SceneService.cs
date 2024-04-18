@@ -70,9 +70,9 @@ namespace Revity.DecaClimb.Persistant
 			LoadScene(m_SceneDataSO.GameScene);
 		}
 
-		public void LoadUpgradeScene()
+		public void LoadStoreScene()
 		{
-			LoadScene(m_SceneDataSO.UpgradeScene);
+			LoadScene(m_SceneDataSO.StoreScene);
 		}
 		#endregion
 	}
