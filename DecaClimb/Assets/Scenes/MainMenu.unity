@@ -3262,8 +3262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 122ce727b04f3cd479f224775d4f351a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HighScoreText: {fileID: 1266300649}
-  m_CheckPointText: {fileID: 619399627}
+  m_HighScoreText: {fileID: 619399627}
+  m_CheckPointText: {fileID: 1266300649}
   m_CoinText: {fileID: 1992605188}
   m_InstructionPanel: {fileID: 1960181699}
   m_CheatPanel: {fileID: 1177763985}
