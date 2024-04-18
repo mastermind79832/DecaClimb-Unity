@@ -361,7 +361,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 62242621}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -2388,7 +2388,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL
+  m_text: CHECKPOINT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c969bb3f425381c4eaec5b0636f792c6, type: 2}
   m_sharedMaterial: {fileID: 7026825790344093962, guid: c969bb3f425381c4eaec5b0636f792c6,
@@ -3262,9 +3262,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 122ce727b04f3cd479f224775d4f351a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HighScoreText: {fileID: 0}
-  m_CheckPointText: {fileID: 0}
-  m_CoinText: {fileID: 0}
+  m_HighScoreText: {fileID: 1266300649}
+  m_CheckPointText: {fileID: 619399627}
+  m_CoinText: {fileID: 1992605188}
   m_InstructionPanel: {fileID: 1960181699}
   m_CheatPanel: {fileID: 1177763985}
   m_CoinsCheat: {fileID: 803975458}

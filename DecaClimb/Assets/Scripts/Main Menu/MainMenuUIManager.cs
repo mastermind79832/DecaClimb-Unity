@@ -1,6 +1,7 @@
 using Revity.DecaClimb.Persistant;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace Revity.DecaClimb.MainMenu
 {
@@ -9,9 +10,9 @@ namespace Revity.DecaClimb.MainMenu
     /// </summary>
     public class MainMenuUIManager : MonoBehaviour
     {
-        [SerializeField] private Text m_HighScoreText;
-        [SerializeField] private Text m_CheckPointText;
-        [SerializeField] private Text m_CoinText;
+        [SerializeField] private TextMeshProUGUI m_HighScoreText;
+        [SerializeField] private TextMeshProUGUI m_CheckPointText;
+        [SerializeField] private TextMeshProUGUI m_CoinText;
 
         [SerializeField] private GameObject m_InstructionPanel;
         [SerializeField] private GameObject m_CheatPanel;
