@@ -6,13 +6,13 @@ namespace Revity.DecaClimb.Game
 {
     public class PillarController : MonoBehaviour
     {
-        private Vector2 lastTapPos;
-        private Vector3 startRotation;
+        private Vector2 m_LastTapPos;
+        private bool m_NewTap;
         [SerializeField] private float m_Speed;
         // Start is called before the first frame update
         void Start()
         {
-            startRotation = transform.localEulerAngles;
+            m_NewTap = true;
         }
 
         // Update is called once per frame
@@ -27,21 +27,21 @@ namespace Revity.DecaClimb.Game
             {
                 Vector2 curTapPos = Input.mousePosition;
 
-                if (lastTapPos == Vector2.zero)
+                if (m_NewTap)
                 {
-                    lastTapPos = curTapPos;
+                    m_LastTapPos = curTapPos;
                 }
 
-                float delta = lastTapPos.x - curTapPos.x;
-                lastTapPos = curTapPos;
+                float delta = m_LastTapPos.x - curTapPos.x;
+                m_LastTapPos = curTapPos;
 
                 transform.Rotate(delta * m_Speed * Vector3.up / 100);
-
+                m_NewTap = false;
             }
 
             if (Input.GetMouseButtonUp(0))
             {
-                lastTapPos = Vector2.zero;
+                m_NewTap = true;
             }
         }
 
