@@ -19,4 +19,4 @@ MonoBehaviour:
   LogoIntroScene: LogoScene
   MainMenuScene: MainMenu
   GameScene: MainGame
-  UpgradeScene: UpgradeScene
+  StoreScene: UpgradeScene
