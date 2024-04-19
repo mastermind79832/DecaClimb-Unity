@@ -6,19 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/PersistantScene.unity
+    path: Assets/_Project/Scenes/PersistantScene.unity
     guid: ad0c982caf11a8f4d8fee20decdb8c09
   - enabled: 1
-    path: Assets/Scenes/LogoScene.unity
+    path: Assets/_Project/Scenes/LogoScene.unity
     guid: c4d71320f8fca774ba08e0866c6a694b
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/_Project/Scenes/MainMenu.unity
     guid: 12e04cdb40f11534a8d6d852e285a4f8
   - enabled: 1
-    path: Assets/Scenes/MainGame.unity
+    path: Assets/_Project/Scenes/MainGame.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/UpgradeScene.unity
+    path: Assets/_Project/Scenes/UpgradeScene.unity
     guid: cb10def61165a8545aee4f5886a43e72
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 20a3386d12d5e304bacfaf6ce2a01445,
