@@ -13,5 +13,5 @@ Join the Climb! Are you ready to scale new heights? Download DecaClimb now and s
 Revity Studios is the solo venture of a passionate developer dedicated to creating captivating gaming experiences. With a focus on simplicity and enjoyment, our games are designed to be picked up and played by anyone, anytime, anywhere.
 
 # Links
-.[youtube](https://youtu.be/O_ZMiCXAq3M)
-.[playstore](https://play.google.com/store/apps/details?id=com.RevityStudio.DecaClimb)
+[youtube](https://youtu.be/O_ZMiCXAq3M)<br>
+[playstore](https://play.google.com/store/apps/details?id=com.RevityStudio.DecaClimb)
