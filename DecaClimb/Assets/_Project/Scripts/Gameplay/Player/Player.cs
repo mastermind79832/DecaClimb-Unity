@@ -1,8 +1,9 @@
+using UnityEditor;
 using UnityEngine;
 
 namespace Revity.DecaClimb.Game
 {
-    public class Player : MonoBehaviour
+	public class Player : MonoBehaviour
     {
         [Header("Player")]
         [SerializeField] private float m_GroundError;
@@ -13,23 +14,26 @@ namespace Revity.DecaClimb.Game
         [SerializeField] private TextMesh m_MultiplierPopup;
 
         private int m_CurrentGroundLevel = 4;
-        private bool b_isDead = false;
+        private bool b_IsDead = false;
 
         [Header("Referneces")]
         [SerializeField] private Rigidbody m_RigidBody;
         [SerializeField] private Collider m_Collider;
         [SerializeField] private TrailRenderer m_TrailRenderer;
 
+        [SerializeField] private LayerMask m_GroundMask;
+
         private GameManager m_GameManager;
         private ScoreManager m_ScoreManager;
         //[SerializeField] private GameObject m_ProgressBar;
 
-        private Vector3 m_staringPos = new Vector3(0, 3.3f, -5);
+        private Vector3 m_StartingPos = new Vector3(0, 3.3f, -5);
 
         // Start is called before the first frame update
         void Start()
         {
            // m_staringPos = transform.position;
+           
         }
 
         public void InjectDependecies(GameManager gameManager, ScoreManager scoreManager)
@@ -38,6 +42,7 @@ namespace Revity.DecaClimb.Game
             m_ScoreManager = scoreManager;
 
             m_ScoreManager.OnMultiplierChanged += SetMultiplier;
+            
         }
 
         private void SetMultiplier(int multiplier)
@@ -64,7 +69,7 @@ namespace Revity.DecaClimb.Game
         {
             if (Input.GetMouseButton(0))
                 m_JumpVelocity = m_JumpPower * 2;
-            else if (b_isDead)
+            else if (b_IsDead)
                 m_JumpVelocity = 0;
             else
                 m_JumpVelocity = m_JumpPower;
@@ -80,28 +85,61 @@ namespace Revity.DecaClimb.Game
 
         private void OnCollisionEnter(Collision other)
 		{
-			if (b_isDead) return;
+			if (b_IsDead) return;
 			if (!other.gameObject.TryGetComponent(out Ground ground)) return;
 
 			if (!IsPlayerAboveGround(ground)) return;
 
-			else if (ground.GroundType == GroundType.Danger && GroundError(ground))
+			if (ground.GroundType == GroundType.Danger && GroundError(ground))
 			{
-				b_isDead = true;
-				m_GameManager.GameOver();
-
+                if (ConfirmDangerGround(ground.gameObject))
+                {
+                    b_IsDead = true;
+				    m_GameManager.GameOver();
+                }
+            }
+			else if(ground.GroundType == GroundType.Normal)
+			{
+				m_RigidBody.velocity = Vector3.up * m_JumpVelocity;
+				CheckFloorPassed(ground);
 			}
 			else if (ground.GroundType == GroundType.Goal && GroundError(ground))
 			{
 				m_GameManager.GameFinish();
 			}
-			else if (ground.GroundType == GroundType.Normal)
-			{
-				m_RigidBody.velocity = Vector3.up * m_JumpVelocity;
-				CheckFloorPassed(ground);
-			}
-
 		}
+
+        private bool ConfirmDangerGround(GameObject ground)
+        {
+            Vector3 leftOrigin = transform.position + Vector3.left * 0.2f;
+            Vector3 rightOrigin = transform.position + Vector3.right * 0.2f;
+
+            bool isHitLeft = Physics.Raycast(leftOrigin, Vector3.down, out RaycastHit hitLeft, 2f, m_GroundMask);
+            bool isHitRight = Physics.Raycast(rightOrigin, Vector3.down, out RaycastHit hitRight, 2f, m_GroundMask);
+
+            Debug.Log($"hitLeft: {isHitLeft}");
+            Debug.Log($"hitRight: {isHitRight}");
+
+            if (isHitLeft && isHitRight)
+            {
+                bool isHit = hitLeft.transform.gameObject == ground &&
+					hitRight.transform.gameObject == ground;
+                Debug.Log($"both same: {isHit}");
+                return isHit;
+            }
+            else if (!isHitLeft || !isHitRight)
+            {
+				Debug.Log($"on side hit:{(isHitLeft?"left":"right")}");
+				return true;
+            }
+            else if(!isHitLeft && !isHitRight)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         private void CheckFloorPassed(Ground ground)
         {
             if (m_CurrentGroundLevel < ground.GetLevel())
@@ -134,12 +172,12 @@ namespace Revity.DecaClimb.Game
             m_Collider.enabled = false;
 			m_TrailRenderer.enabled = false;
 
-            transform.position = m_staringPos;
+            transform.position = m_StartingPos;
 			Invoke(nameof(StartTrail), 1f);
 			m_Collider.enabled = true;
 
             m_CurrentGroundLevel = 0;
-            b_isDead = false;
+            b_IsDead = false;
 		}
 
         private void StartTrail()
@@ -147,5 +185,16 @@ namespace Revity.DecaClimb.Game
 			m_TrailRenderer.enabled = true;
 
         }
-	}
+
+        private void OnDrawGizmos()
+        {
+            Vector3 leftOrigin = transform.position + Vector3.left * 0.2f;
+            Vector3 rightOrigin = transform.position + Vector3.right * 0.2f;
+
+            Gizmos.color = Color.cyan;
+           
+            Gizmos.DrawRay(leftOrigin, Vector3.down);
+            Gizmos.DrawRay(rightOrigin, Vector3.down);
+        }
+    }
 }

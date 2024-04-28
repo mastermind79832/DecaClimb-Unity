@@ -108,7 +108,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.47
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7378768350973566224
 Rigidbody:
@@ -172,12 +172,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroundError: 0.58
   m_JumpPower: 5.2
-  m_MultiplierPopup: {fileID: 7378768352383277823}
-  m_MaxMultiplierTime: 2
-  m_GameManager: {fileID: 0}
+  m_MultiplierPopup: {fileID: 7378768352383277817}
   m_RigidBody: {fileID: 7378768350973566224}
   m_Collider: {fileID: 7378768350973566227}
   m_TrailRenderer: {fileID: 7378768352232650439}
+  m_GroundMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &7378768352232650437
 GameObject:
   m_ObjectHideFlags: 0

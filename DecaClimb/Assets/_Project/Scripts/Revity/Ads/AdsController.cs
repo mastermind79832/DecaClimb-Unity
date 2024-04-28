@@ -8,7 +8,7 @@ namespace Revity.Ads
 	/// </summary>
 	public abstract class AdsController : IUnityAdsLoadListener, IUnityAdsShowListener
 	{
-		[SerializeField] protected string m_DeviceUnitId;
+		protected string m_DeviceUnitId;
 		public bool IsAdsLoaded { get; private set; }
 
 		public AdsController(string id)

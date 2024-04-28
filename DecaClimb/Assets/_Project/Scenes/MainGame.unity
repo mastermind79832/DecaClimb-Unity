@@ -2678,8 +2678,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d17e390dc686d72488efc74543ed837a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinSpawnner: {fileID: 7153081029248957978, guid: 8d19c62df79ef994ab64400d6dd67b66,
-    type: 3}
 --- !u!4 &1874428545
 Transform:
   m_ObjectHideFlags: 0
